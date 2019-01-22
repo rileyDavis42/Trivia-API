@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { MatButtonModule } from '@angular/material';
 
 @NgModule({
     declarations: [AppComponent],
@@ -22,7 +23,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
         AppRoutingModule,
         AngularFireModule.initializeApp(environment.config),
         AngularFireModule,
-        AngularFireDatabaseModule
+        AngularFireDatabaseModule,
+        MatButtonModule
     ],
     providers: [
         StatusBar,

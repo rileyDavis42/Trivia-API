@@ -1,6 +1,8 @@
 {
   "name": "trivia-api",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular",
   "id": "8cee7fbd"
 }
