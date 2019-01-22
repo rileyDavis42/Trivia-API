@@ -3,7 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+    production: false,
+    config: {
+        apiKey: 'AIzaSyCKMC1dSZa9B5NOW_7NpFN9lS96lTBmSzo',
+        authDomain: 'mtech-trivia-api.firebaseapp.com',
+        databaseURL: 'https://mtech-trivia-api.firebaseio.com',
+        projectId: 'mtech-trivia-api',
+        storageBucket: 'mtech-trivia-api.appspot.com',
+        messagingSenderId: '724360003137'
+    }
 };
 
 /*
