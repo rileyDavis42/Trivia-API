@@ -8,6 +8,12 @@
 
 <ion-content padding>
     <div id="form">
-        <button mat-raised-button color="primary">Register</button>
+        <ion-item>
+            <ion-input placeholder="Username" type="text" value="" [(ngModel)]="username"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input placeholder="Password" type="text" value="" [(ngModel)]="password"></ion-input>
+        </ion-item>
+        <ion-button (click)="register()">Register</ion-button>
     </div>
 </ion-content>
