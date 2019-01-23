@@ -7,6 +7,8 @@ const routes: Routes = [
   { path: 'game-details', loadChildren: './game-details/game-details.module#GameDetailsPageModule' },
   { path: 'trivia-page', loadChildren: './trivia-page/trivia-page.module#TriviaPagePageModule' },
   { path: 'player-stats', loadChildren: './player-stats/player-stats.module#PlayerStatsPageModule' },
+  { path: '**', loadChildren: './home/home.module#HomePageModule' },
+
 ];
 
 @NgModule({
