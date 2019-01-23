@@ -1,0 +1,20 @@
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            Trivia App
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <div id="form">
+        <ion-item>
+            <ion-input placeholder="Email" type="email" value="" [(ngModel)]="email"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-input placeholder="Password" type="password" value="" [(ngModel)]="password"></ion-input>
+        </ion-item>
+        <ion-button (click)="register()">Sign in</ion-button>
+    </div>
+</ion-content>
