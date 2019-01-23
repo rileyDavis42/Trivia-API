@@ -1,19 +1,14 @@
 <ion-header>
     <ion-toolbar>
         <ion-title>
-            Trivia App *
+            Trivia App
         </ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
     <div id="form">
-        <ion-item>
-            <ion-input placeholder="Email" type="email" value="" [(ngModel)]="email"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-input placeholder="Password" type="password" value="" [(ngModel)]="password"></ion-input>
-        </ion-item>
-        <ion-button (click)="register()">Sign in</ion-button>
+        <img id="signin_button" (click)="register()" src="../../assets/btn_google_signin_dark_focus_web@2x.png" alt="">
+        <img id="singin_logo" src="{{ profilePic }}" alt="">
     </div>
 </ion-content>

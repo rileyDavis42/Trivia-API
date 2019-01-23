@@ -1,6 +1,8 @@
-import {Component} from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { UserService } from '../user/user.service';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { auth } from 'firebase';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-home',
@@ -11,12 +13,27 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class HomePage {
     email: string;
     password: string;
+    profilePic = '';
+    user;
 
-    constructor(private userService: UserService, private fireAuth: AngularFireAuth) {  }
+    constructor(private userService: UserService, private fireAuth: AngularFireAuth, private zone: NgZone, private router: Router) {  }
 
     register() {
-        // this.userService.registerUser(this.username, this.password);
-        this.fireAuth.auth.createUserWithEmailAndPassword(this.email, this.password)
-            .then(user => console.log(user));
+        let user = this.user;
+        this.fireAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
+            .then(data => {
+                console.log(JSON.stringify(data['user']));
+                this.zone.run(() => {
+                    this.profilePic = data['user']['photoURL'];
+                    user = {
+                        name: data['user']['displayName'],
+                        email: data['user']['email'],
+                        logo: data['user']['photoURL']
+                    };
+                    console.log(user);
+                });
+                this.router.navigate(['game-details', { user: JSON.stringify(user) }]);
+            })
+            .catch(error => console.log('Error logging in...', error));
     }
 }
