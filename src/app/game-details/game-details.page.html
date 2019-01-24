@@ -7,7 +7,7 @@
 
 <ion-content padding>
     <div id="form">
-        <ion-select [(ngModel)]="data.categoryID" placeholder="Category..." interface="popover">
+        <ion-select [(ngModel)]="data.categoryID" placeholder="Category..." interface="popover" (ionChange)="updateCategoryName()">
             <ion-select-option *ngFor="let category of categories" value="{{category['id']}}">{{category['name']}}</ion-select-option>
         </ion-select>
 

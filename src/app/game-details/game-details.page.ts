@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { User } from '../user/user';
 import { GameService } from '../user/game.service';
 import { NavController } from '@ionic/angular';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'app-game-details',
@@ -14,6 +15,7 @@ export class GameDetailsPage implements OnInit {
     user: User;
     categories: Object;
     data = {
+        categoryName: '',
         categoryID: '',
         questions: 0,
         difficulty: 'medium'
@@ -31,6 +33,10 @@ export class GameDetailsPage implements OnInit {
 
     startGame() {
         this.navCtrl.navigateForward(['trivia-page', { data: JSON.stringify(this.data) }]);
+    }
+
+    updateCategoryName() {
+        this.data.categoryName = _.find(this.categories, { 'id': Number(this.data.categoryID) })['name'];
     }
 
 }
