@@ -22,15 +22,17 @@ export class HomePage {
         let user = this.user;
         this.fireAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
             .then(data => {
-                console.log(JSON.stringify(data['user']));
                 this.zone.run(() => {
                     this.profilePic = data['user']['photoURL'];
                     user = {
+                        id: data['user']['uid'],
                         name: data['user']['displayName'],
                         email: data['user']['email'],
-                        logo: data['user']['photoURL']
+                        logo: data['user']['photoURL'],
+                        games: []
                     };
-                    console.log(user);
+                    sessionStorage.setItem('user', JSON.stringify(user));
+                    this.userService.registerUser(user);
                 });
                 this.router.navigate(['game-details', { user: JSON.stringify(user) }]);
             })
