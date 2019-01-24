@@ -16,7 +16,6 @@ export class GameDetailsPage implements OnInit {
 
     ngOnInit() {
         this.user = JSON.parse(this.route.snapshot.paramMap.get('user'));
-        console.log(this.user);
     }
 
 }

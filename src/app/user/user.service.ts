@@ -18,24 +18,10 @@ export class UserService {
         return this.usersRef.valueChanges();
     }
 
-    registerUser(username: string, password: string) {
-        const userCheck: AngularFireObject<any> = this.db.object('Users/' + username);
-        userCheck.valueChanges().subscribe(data => {
-            if (data) {
-                alert('Username taken!');
-            } else {
-                const newUser = {
-                    username: username,
-                    data: {
-                        password: password
-                    }
-                };
-                const newUserRef: AngularFireObject<any> = this.db.object('Users/' + username);
-                newUserRef.update(newUser)
-                    .then(_ => console.log('User has successfully been added...'))
-                    .catch(error => console.log('Error adding user to database...', error));
-                return;
-            }
-        });
+    registerUser(user: User) {
+        const newUserRef: AngularFireObject<any> = this.db.object('Users/' + user.id);
+        newUserRef.update(user)
+            .then(_ => console.log('User has successfully been added...'))
+            .catch(error => console.log('Error adding user to database...', error));
     }
 }
