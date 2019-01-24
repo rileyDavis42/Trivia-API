@@ -1,18 +1,23 @@
 <ion-header>
-<<<<<<< HEAD
-  <ion-toolbar>
-    <ion-title>Game Details</ion-title>
-  </ion-toolbar>
-=======
     <ion-toolbar>
-        <ion-title>game-details</ion-title>
+        <ion-title>Game Details</ion-title>
         <img slot="end" id="profile_pic" src="{{user.logo}}" alt="">
     </ion-toolbar>
->>>>>>> b8262353e4d4ea59bf8f14b27d1b25b11a70f414
 </ion-header>
 
 <ion-content padding>
+    <div id="form">
+        <ion-select [(ngModel)]="data.categoryID" placeholder="Category..." interface="popover">
+            <ion-select-option *ngFor="let category of categories" value="{{category['id']}}">{{category['name']}}</ion-select-option>
+        </ion-select>
 
-  <div>Game details works!</div>
+        <ion-input style="width: 50px;" [(ngModel)]="data.questions" type="number" placeholder="Number of Questions..."></ion-input>
 
+        <ion-select [(ngModel)]="data.difficulty" placeholder="Difficulty...">
+            <ion-select-option value="easy">Easy</ion-select-option>
+            <ion-select-option value="medium">Medium</ion-select-option>
+            <ion-select-option value="hard">Hard</ion-select-option>
+        </ion-select>
+    </div>
+    <ion-button shape="round" color="primary" (click)="startGame()">Start Game</ion-button>
 </ion-content>

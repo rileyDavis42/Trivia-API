@@ -1,4 +1,20 @@
 #profile_pic {
-  width: 50px;
+  width: 40px;
   border-radius: 100%;
+}
+
+ion-content {
+  --background: #C90090;
+}
+
+#form {
+  * {
+    margin: 10px;
+    background: #FFFFFF;
+  }
+}
+ion-button {
+  display: block;
+  margin: auto;
+  width: 200px;
 }

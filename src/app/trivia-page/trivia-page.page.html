@@ -1,11 +1,15 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Trivia Page</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button (click)="goBack()"></ion-back-button>
+        </ion-buttons>
+        <ion-title>trivia-page</ion-title>
+    </ion-toolbar>cd D
 </ion-header>
 
 <ion-content padding>
-
-  <div>Trivia page works!</div>
-
+    <ion-spinner *ngIf="!isLoaded"></ion-spinner>
+    <p>Category: {{ data.categoryID }}</p>
+    <p>Questions: {{ data.questions }}</p>
+    <p>Difficulty: {{ data.difficulty }}</p>
 </ion-content>
