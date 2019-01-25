@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import {GameService} from '../user/game.service';
+import {Questions} from "../model/questions";
 
 @Component({
     selector: 'app-trivia-page',
@@ -13,14 +14,12 @@ export class TriviaPagePage implements OnInit {
     data = {
         categoryName: '',
         categoryID: '',
-        questions: 0,
+        questions: [],
         difficulty: ''
     };
     isLoaded = false;
 
-    questions = {
-
-    };
+    questions: Questions [] = [];
 
     constructor( private route: ActivatedRoute, private navCtrl: NavController, private gameService: GameService ) {
     }
@@ -28,7 +27,7 @@ export class TriviaPagePage implements OnInit {
     ngOnInit() {
         this.data = JSON.parse(this.route.snapshot.paramMap.get('data'));
         this.gameService.getQuestions(this.data).subscribe(data => {
-            this.questions = data;
+            this.questions = data['results'];
             this.isLoaded = true;
         });
     }
@@ -38,4 +37,9 @@ export class TriviaPagePage implements OnInit {
             this.navCtrl.goBack();
         }
     }
+    askQuestion(){
+
+    }
+
+
 }
