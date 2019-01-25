@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
-import { User } from './user';
+import {Injectable} from '@angular/core';
+import {AngularFireDatabase, AngularFireObject} from '@angular/fire/database';
+import {User} from './user';
+import {Observable} from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -23,5 +24,9 @@ export class UserService {
         newUserRef.update(user)
             .then(_ => console.log('User has successfully been added...'))
             .catch(error => console.log('Error adding user to database...', error));
+    }
+
+    getGames(userID: string): Observable<any> {
+        return this.db.object('Users/' + userID + '/Games/Current Games/').valueChanges();
     }
 }
