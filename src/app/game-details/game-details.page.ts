@@ -4,6 +4,7 @@ import { User } from '../user/user';
 import { GameService } from '../user/game.service';
 import { NavController } from '@ionic/angular';
 import * as _ from 'lodash';
+import {Game} from '../user/game';
 
 @Component({
     selector: 'app-game-details',
@@ -14,17 +15,20 @@ export class GameDetailsPage implements OnInit {
 
     user: User;
     categories: Object;
-    data = {
-        categoryName: '',
-        categoryID: '',
-        questions: 0,
-        difficulty: 'medium'
-    };
+    data: Game;
 
     constructor(private route: ActivatedRoute, private gameService: GameService, private navCtrl: NavController) {
     }
 
     ngOnInit() {
+        this.data = new class implements Game {
+            category: string;
+            categoryID: string;
+            difficulty: string;
+            players: User[];
+            questions: boolean[];
+            won: boolean;
+        };
         this.user = JSON.parse(this.route.snapshot.paramMap.get('user'));
         this.gameService.getCategories().subscribe(data => {
             this.categories = data['trivia_categories'];
@@ -36,7 +40,7 @@ export class GameDetailsPage implements OnInit {
     }
 
     updateCategoryName() {
-        this.data.categoryName = _.find(this.categories, { 'id': Number(this.data.categoryID) })['name'];
+        this.data.category = _.find(this.categories, { 'id': Number(this.data.categoryID) })['name'];
     }
 
 }
