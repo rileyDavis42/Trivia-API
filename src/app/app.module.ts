@@ -14,9 +14,10 @@ import { environment } from '../environments/environment';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {HttpClientModule} from '@angular/common/http';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
-    declarations: [AppComponent],
+    declarations: [AppComponent, HeaderComponent],
     entryComponents: [],
     imports: [
         BrowserModule,
