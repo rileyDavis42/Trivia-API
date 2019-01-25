@@ -1,6 +1,10 @@
+import {User} from './user';
+
 export interface Game {
     won: boolean;
     category: string;
+    categoryID: string;
     difficulty: string;
-    questions: boolean[];
+    players: User[];
+    questions: Object[];
 }

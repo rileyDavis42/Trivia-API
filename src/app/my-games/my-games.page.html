@@ -1,0 +1,17 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Ongoing Games</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-spinner *ngIf="!isLoaded"></ion-spinner>
+    <ng-container *ngIf="isLoaded">
+        <div class="game" *ngFor="let game of my_games">
+            <p>Category: {{game['category']}}</p>
+            <p>Difficulty: {{game['difficulty']}}</p>
+            <p>Players: {{game['players']}}</p>
+            <p>Won: {{game['won']}}</p>
+        </div>
+    </ng-container>
+</ion-content>

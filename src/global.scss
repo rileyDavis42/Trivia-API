@@ -11,3 +11,11 @@
 @import '~@ionic/angular/css/flex-utils.css';
 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+ion-spinner {
+  margin: auto;
+  display: block;
+  width: 80px !important;
+  height: 80px !important;
+  fill: #008081 !important;
+}

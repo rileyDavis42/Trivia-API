@@ -9,13 +9,13 @@ export class GameService {
 
     categoriesUrl = 'https://opentdb.com/api_category.php';
 
-    constructor(private http: HttpClient) {}
+    constructor( private http: HttpClient ) {}
 
     getCategories(): Observable<any> {
         return this.http.get(this.categoriesUrl);
     }
 
-    getQuestions(data) {
+    getQuestions( data ) {
         const categoryID = data['categoryID'];
         const questions = data['questions'];
         const difficulty = data['difficulty'];
