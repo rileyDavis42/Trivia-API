@@ -5,5 +5,8 @@ export interface User {
     name: string;
     email: string;
     logo: string;
-    games: Game[];
+    games: {
+        currentGames: Game[];
+        olderGames: Game[];
+    };
 }
