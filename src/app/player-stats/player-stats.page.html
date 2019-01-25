@@ -1,11 +1,23 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Player Stats</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>Player Stats</ion-title>
+        <img slot="end" id="profile_pic" src="{{user.logo}}" alt="">
+    </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-
-  <div>Player stats works!</div>
-
+    <mat-card id="gamesCard">
+        <p>Games played: </p>
+        <p>Games won: </p>
+        <p>Games lost: </p>
+    </mat-card>
+    <mat-card id="questionsCard">
+        <p>Questions answered: </p>
+        <p>Questions answered correctly: </p>
+        <p>Questions answered incorrectly: </p>
+    </mat-card>
+    <mat-card id="categoryCard">
+        <p>Best Category: </p>
+        <p>Worst Category: </p>
+    </mat-card>
 </ion-content>
