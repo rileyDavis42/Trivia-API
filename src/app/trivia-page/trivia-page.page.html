@@ -9,20 +9,20 @@
 
 <ion-content padding>
     <ion-spinner *ngIf="!isLoaded"></ion-spinner>
-
-    <ion-card>
-        <ion-card-header></ion-card-header>
-        <ion-card-content>
-            <div>
-                Questions
-            </div>
-            <div>{{ strParse( activeUser ) }}</div>
-            <div>{{ strParse( activeQuestion ) }}</div>
-            <div>{{ answers }}</div>
-            <div>{{ strParse( answerResult ) }}</div>
-            <div> {{ strParse( resultComment ) }}</div>
-            <div></div>
-        </ion-card-content>
-    </ion-card>
-
-</ion-content>
+<ion-card>
+    <ion-card-header></ion-card-header>
+    <ion-card-content>
+        <div>
+            Questions
+        </div>
+        <div>{{ activePlayer }}</div>
+        <div>{{ activeQuestion}}</div>
+        <ion-select [(ngModel)]="playerAnswer" placeholder="Difficulty...">
+            <ion-select-option *ngFor="let answer of answers; index as i" value="answer.correct">{{answer[i]}}</ion-select-option>
+        </ion-select>
+        <div>{{ answers}}</div>
+        <div>{{ answerResult }}</div>
+        <div> {{ resultComment}}</div>
+        <div></div>
+    </ion-card-content>
+</ion-card>

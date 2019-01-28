@@ -17,11 +17,13 @@ export class TriviaPagePage implements OnInit {
     data: Game;
     isLoaded = false;
     user: User;
-
+    activePlayer: string;
     questions: Questions [] = [];
     activeUser: string;
     activeQuestion: string;
+    answer: object;
     answers: Array<object>;
+    playerAnswer: string;
     answerResult: string;
     resultComment: string;
     count = 0;
