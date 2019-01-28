@@ -5,19 +5,40 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-    <div id="form">
-        <ion-select [(ngModel)]="data.categoryID" placeholder="Category..." interface="popover" (ionChange)="updateCategoryName()">
-            <ion-select-option *ngFor="let category of categories" value="{{category['id']}}">{{category['name']}}</ion-select-option>
-        </ion-select>
+<ion-content>
+    <div id="content">
+        <div id="form">
+            <ion-item>
+                <ion-label>
+                    Category:
+                </ion-label>
+                <ion-select [(ngModel)]="data.categoryID" placeholder="Category..." interface="popover" (ionChange)="updateCategoryName(); updateQuestionCount()">
+                    <ion-select-option *ngFor="let category of categories" value="{{category['id']}}">{{category['name']}}</ion-select-option>
+                </ion-select>
+            </ion-item>
 
-        <ion-input style="width: 50px;" [(ngModel)]="data.questions" type="number" placeholder="Number of Questions..."></ion-input>
+            <ion-radio-group [(ngModel)]="data.difficulty" (ionChange)="updateQuestionCount()">
+                <ion-item>
+                    <ion-label>Easy</ion-label>
+                    <ion-radio value="easy"></ion-radio>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Medium</ion-label>
+                    <ion-radio value="medium"></ion-radio>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Hard</ion-label>
+                    <ion-radio value="hard"></ion-radio>
+                </ion-item>
+            </ion-radio-group>
 
-        <ion-select [(ngModel)]="data.difficulty" placeholder="Difficulty...">
-            <ion-select-option value="easy">Easy</ion-select-option>
-            <ion-select-option value="medium">Medium</ion-select-option>
-            <ion-select-option value="hard">Hard</ion-select-option>
-        </ion-select>
+            <ion-item *ngIf="data.category && data.difficulty">
+                <ion-label>Question Count: </ion-label>
+                <input type="number" max="{{questionCount}}" placeholder="#"
+                       [(ngModel)]="data.questions"/>
+            </ion-item>
+
+            <ion-button shape="round" color="primary" (click)="startGame()" slot="end">Start Game</ion-button>
+        </div>
     </div>
-    <ion-button shape="round" color="primary" (click)="startGame()">Start Game</ion-button>
 </ion-content>
