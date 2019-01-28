@@ -19,6 +19,12 @@ export class TriviaPagePage implements OnInit {
     user: User;
 
     questions: Questions [] = [];
+    activeUser: string;
+    activeQuestion: string;
+    answers: Array<object>;
+    answerResult: string;
+    resultComment: string;
+    count = 0;
 
     constructor(
         private route: ActivatedRoute,
@@ -43,7 +49,17 @@ export class TriviaPagePage implements OnInit {
         }
     }
     askQuestion(){
-
+        this.activeQuestion = this.questions[this.count]['question'];
+        this.answers = this.getAnswers();
+    }
+    getAnswers(){
+        let tempArray = [];
+       tempArray.push({question: this.questions[this.count]['correct_answer'], correct: true});
+        for(let i = 0; i < this.questions[this.count]['incorrect_answers']; i ++)
+        {
+            tempArray.push({answer: this.questions[this.count]['incorrect_answers'][i], correct: false})
+        }
+        return tempArray;
     }
 
 
