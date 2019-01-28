@@ -10,10 +10,20 @@
 <ion-content padding>
     <ion-spinner *ngIf="!isLoaded"></ion-spinner>
 
-    <ion-card *ngFor="let question of data.questions">
-        <ion-card-header>{{strParse(question['question'])}}</ion-card-header>
+    <ion-card>
+        <ion-card-header></ion-card-header>
         <ion-card-content>
-            <ion-button color="primary" shape="round" (click)="answerQuestion( 1, false )">A</ion-button>
+            <div>
+                Questions
+            </div>
+            <div>{{ activeUser }}</div>
+            <div>{{ activeQuestion}}</div>
+            <div>{{ answers}}</div>
+            <div>{{ answerResult }}</div>
+            <div> {{ resultComment}}</div>
+            <div> {{ }}</div>
+            <div></div>
         </ion-card-content>
     </ion-card>
+
 </ion-content>
