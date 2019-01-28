@@ -16,6 +16,12 @@ export class GameService {
         return this.http.get(this.categoriesUrl);
     }
 
+
+    getCategoryAnswerCount(catID: string) {
+        const url = 'https://opentdb.com/api_count.php?category=' + catID;
+        return this.http.get(url);
+    }
+
     getQuestions( data ) {
         const categoryID = data['categoryID'];
         const questions = data['questions'];

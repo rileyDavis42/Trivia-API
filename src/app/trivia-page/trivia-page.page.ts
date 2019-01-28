@@ -61,6 +61,7 @@ export class TriviaPagePage implements OnInit {
         this.activeQuestion = this.questions[this.count]['question'];
         this.answers = this.getAnswers();
     }
+
     getAnswers() {
         const tempArray = [];
        tempArray.push({question: this.questions[this.count]['correct_answer'], correct: true});
