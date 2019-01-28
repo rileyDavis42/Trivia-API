@@ -22,6 +22,7 @@ export class GameDetailsPage implements OnInit {
 
     ngOnInit() {
         this.data = new class implements Game {
+            gameID: string;
             category: string;
             categoryID: string;
             difficulty: string;

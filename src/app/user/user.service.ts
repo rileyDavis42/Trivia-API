@@ -31,11 +31,12 @@ export class UserService {
         return this.db.object('Users/' + userID + '/Games/Current Games/').valueChanges();
     }
 
-    startNewGame( user: User, game: Game ) {
+    startNewGame( user: User, game: Game ): string {
         const key = Math.round(Math.random() * 1000000);
         const gameRef = this.db.object('Users/' + user.id + '/Games/Current Games/' + key);
         gameRef.update(game)
             .then(_ => console.log('Successfully created game...'))
             .catch(error => console.log('Error creating game...', error));
+        return String(key);
     }
 }

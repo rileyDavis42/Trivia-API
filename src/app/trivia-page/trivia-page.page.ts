@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import {Questions} from "../model/questions";
+import { Questions } from '../model/questions';
 import { GameService } from '../user/game.service';
 import { User } from '../user/user';
 import { UserService } from '../user/user.service';
@@ -41,7 +41,8 @@ export class TriviaPagePage implements OnInit {
             this.questions = data['results'];
             this.data.questions = this.questions;
             this.isLoaded = true;
-            this.userService.startNewGame(this.user, this.data);
+            this.data.gameID = this.userService.startNewGame(this.user, this.data);
+            console.log(this.data.questions);
         });
     }
 
@@ -50,19 +51,29 @@ export class TriviaPagePage implements OnInit {
             this.navCtrl.goBack();
         }
     }
-    askQuestion(){
+
+    strParse(txt: string): string {
+        txt = txt.replace('%20', ' ');
+        txt = txt.replace('&#039;', '\'');
+        txt = txt.replace('&quot;', '\'');
+        return txt;
+    }
+
+    askQuestion() {
         this.activeQuestion = this.questions[this.count]['question'];
         this.answers = this.getAnswers();
     }
-    getAnswers(){
-        let tempArray = [];
+    getAnswers() {
+        const tempArray = [];
        tempArray.push({question: this.questions[this.count]['correct_answer'], correct: true});
-        for(let i = 0; i < this.questions[this.count]['incorrect_answers']; i ++)
-        {
-            tempArray.push({answer: this.questions[this.count]['incorrect_answers'][i], correct: false})
+        for (let i = 0; i < this.questions[this.count]['incorrect_answers']; i ++) {
+            tempArray.push({answer: this.questions[this.count]['incorrect_answers'][i], correct: false});
         }
         return tempArray;
     }
 
+    answerQuestion( questionNumb: number, correct: boolean ) {
+        this.gameService.answerQuestion( this.user.id, this.data.gameID, questionNumb, correct );
+    }
 
 }
