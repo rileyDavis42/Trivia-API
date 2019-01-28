@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import {Questions} from "../model/questions";
+import { Questions } from '../model/questions';
 import { GameService } from '../user/game.service';
 import { User } from '../user/user';
 import { UserService } from '../user/user.service';
@@ -33,7 +33,8 @@ export class TriviaPagePage implements OnInit {
             this.questions = data['results'];
             this.data.questions = this.questions;
             this.isLoaded = true;
-            this.userService.startNewGame(this.user, this.data);
+            this.data.gameID = this.userService.startNewGame(this.user, this.data);
+            console.log(this.data.questions);
         });
     }
 
@@ -42,9 +43,16 @@ export class TriviaPagePage implements OnInit {
             this.navCtrl.goBack();
         }
     }
-    askQuestion(){
 
+    strParse(txt: string): string {
+        txt = txt.replace('%20', ' ');
+        txt = txt.replace('&#039;', '\'');
+        txt = txt.replace('&quot;', '\'');
+        return txt;
     }
 
+    answerQuestion( questionNumb: number, correct: boolean ) {
+        this.gameService.answerQuestion( this.user.id, this.data.gameID, questionNumb, correct );
+    }
 
 }
