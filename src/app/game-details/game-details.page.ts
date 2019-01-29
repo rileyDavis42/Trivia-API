@@ -4,7 +4,7 @@ import { User } from '../user/user';
 import { GameService } from '../user/game.service';
 import { NavController } from '@ionic/angular';
 import * as _ from 'lodash';
-import {Game} from '../user/game';
+import { Game } from '../user/game';
 
 @Component({
     selector: 'app-game-details',
@@ -16,12 +16,14 @@ export class GameDetailsPage implements OnInit {
     user: User;
     categories: Object;
     data: Game;
+    questionCount = 0;
 
     constructor(private route: ActivatedRoute, private gameService: GameService, private navCtrl: NavController) {
     }
 
     ngOnInit() {
         this.data = new class implements Game {
+            gameID: string;
             category: string;
             categoryID: string;
             difficulty: string;
@@ -41,6 +43,14 @@ export class GameDetailsPage implements OnInit {
 
     updateCategoryName() {
         this.data.category = _.find(this.categories, { 'id': Number(this.data.categoryID) })['name'];
+    }
+
+    updateQuestionCount() {
+        if (this.data.difficulty && this.data.category) {
+            this.gameService.getCategoryAnswerCount( this.data.categoryID ).subscribe(data => {
+                this.questionCount = data['category_question_count']['total_' + this.data.difficulty + '_question_count'];
+            });
+        }
     }
 
 }

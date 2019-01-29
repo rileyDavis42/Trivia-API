@@ -3,13 +3,27 @@
         <ion-buttons slot="start">
             <ion-back-button (click)="goBack()"></ion-back-button>
         </ion-buttons>
-        <ion-title>{{data.categoryName}}</ion-title>
+        <ion-title>{{data.category}}</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
     <ion-spinner *ngIf="!isLoaded"></ion-spinner>
-    <p>Category: {{ data.categoryID }}</p>
-    <p>Questions: {{ data.questions }}</p>
-    <p>Difficulty: {{ data.difficulty }}</p>
+<ion-card>
+    <ion-card-header></ion-card-header>
+        <ion-card-content>
+            <div>
+                Questions
+            </div>
+            <div>{{ activePlayer }}</div>
+            <div>{{ activeQuestion}}</div>
+            <ion-select [(ngModel)]="playerAnswer" placeholder="Answers">
+                <ion-select-option *ngFor="let answer of answers" [value]="answer.correct">{{ answer.pAnswer }}</ion-select-option>
+            </ion-select>
+            <!--<div>{{ answers}}</div>-->
+            <!--<div>{{ answerResult }}</div>-->
+            <!--<div> {{ resultComment}}</div>-->
+            <div></div>
+        </ion-card-content>
+    </ion-card>
 </ion-content>
