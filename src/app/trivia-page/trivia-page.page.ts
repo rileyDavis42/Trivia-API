@@ -22,7 +22,7 @@ export class TriviaPagePage implements OnInit {
     activeUser: string;
     activeQuestion: string;
     answer: object;
-    answers: Array<object>;
+    answers: Array<any>;
     playerAnswer: string;
     answerResult: string;
     resultComment: string;
@@ -42,14 +42,8 @@ export class TriviaPagePage implements OnInit {
             this.data.questions = this.questions;
             this.isLoaded = true;
             this.data.gameID = this.userService.startNewGame(this.user, this.data);
-            console.log(this.data.questions);
             this.getAnswers();
             this.askQuestion();
-            console.log("question" + this.questions[this.count]['question']);
-            // console.log("answers" + this.questions[this.count]['correct_answer'] + this.questions[this.count]['incorrect_answer']);
-            console.log("answers" + this.answers);
-            // console.log("answers[0]" + this.answers[0].question);
-            console.log("correct" + this.questions[this.count]['correct_answer']);
         });
     }
 
@@ -68,21 +62,19 @@ export class TriviaPagePage implements OnInit {
 
     askQuestion() {
         this.activeQuestion = this.questions[this.count]['question'];
-        // this.answers = this.getAnswers();
     }
 
     getAnswers() {
         const tempArray = [];
        tempArray.push({pAnswer: this.questions[this.count]['correct_answer'], correct: true});
-        for (let i = 0; i < this.questions[this.count]['incorrect_answers']; i ++) {
+        for (let i = 0; i < this.questions[this.count]['incorrect_answers'].length; i ++) {
             tempArray.push({pAnswer: this.questions[this.count]['incorrect_answers'][i], correct: false});
         }
-        console.log("tempArray" + JSON.stringify(tempArray));
-        console.log("tempArray[0]" + JSON.stringify(tempArray[0]));
-        console.log("tempArray answer" + JSON.stringify(tempArray[0].correct));
-        console.log("No JSON answer" + tempArray[0].correct);
         this.answers = tempArray;
-        console.log("this.answers" + this.answers)
+        // console.log("this.answers" + this.answers);
+        console.log("JSON string answers" + JSON.stringify(this.answers[0].pAnswer));
+        console.log("JSON string answers" + JSON.stringify(this.answers));
+        console.log("[1] pAnswer" + this.answers[1].pAnswer);
     }
 
     answerQuestion( questionNumb: number, correct: boolean ) {

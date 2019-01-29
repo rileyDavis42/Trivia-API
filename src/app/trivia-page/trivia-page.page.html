@@ -18,15 +18,11 @@
             <div>{{ activePlayer }}</div>
             <div>{{ activeQuestion}}</div>
             <ion-select [(ngModel)]="playerAnswer" placeholder="Answers">
-                <ion-select-option *ngFor="let answer of answers; index as index" [value]="answer[index].correct">{{answer.pAnswer}}</ion-select-option>
-                <script>console.log(JSON.stringify( answer ))</script>
-                <ion-select-option *ngFor="let answer of answers; index as index" [value]="false">{{answer.pAnswer}}</ion-select-option>
-                <!--<ion-select-option *ngFor="let answer of answers; index as index">{{answer.pAnswer}}</ion-select-option>-->
-
+                <ion-select-option *ngFor="let answer of answers" [value]="answer.correct">{{ answer.pAnswer }}</ion-select-option>
             </ion-select>
-            <div>{{ answers}}</div>
-            <div>{{ answerResult }}</div>
-            <div> {{ resultComment}}</div>
+            <!--<div>{{ answers}}</div>-->
+            <!--<div>{{ answerResult }}</div>-->
+            <!--<div> {{ resultComment}}</div>-->
             <div></div>
         </ion-card-content>
     </ion-card>
