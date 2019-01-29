@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { Questions } from '../model/questions';
 import { GameService } from '../user/game.service';
@@ -21,18 +21,23 @@ export class TriviaPagePage implements OnInit {
     questions: Questions [] = [];
     activeUser: string;
     activeQuestion: string;
-    answer: object;
+    answer: any;
     answers: Array<any>;
     playerAnswer: string;
     answerResult: string;
     resultComment: string;
     count = 0;
+    gameEnded: boolean = false;
+    correctAnswer: string;
+    isAnswered: boolean = false;
+    right: boolean;
 
     constructor(
         private route: ActivatedRoute,
         private navCtrl: NavController,
         private gameService: GameService,
-        private userService: UserService ) { }
+        private userService: UserService,
+        private router: Router) { }
 
     ngOnInit() {
         this.data = JSON.parse(this.route.snapshot.paramMap.get('data'));
@@ -60,25 +65,56 @@ export class TriviaPagePage implements OnInit {
         return txt;
     }
 
+    startRound(){
+        this.askQuestion();
+        this.getAnswers();
+    }
     askQuestion() {
-        this.activeQuestion = this.questions[this.count]['question'];
+            this.activeQuestion = this.questions[this.count]['question'];
+            console.log("count =  " + this.count);
     }
 
     getAnswers() {
         const tempArray = [];
+        this.correctAnswer = this.questions[this.count]['correct_answer'];
        tempArray.push({pAnswer: this.questions[this.count]['correct_answer'], correct: true});
         for (let i = 0; i < this.questions[this.count]['incorrect_answers'].length; i ++) {
             tempArray.push({pAnswer: this.questions[this.count]['incorrect_answers'][i], correct: false});
         }
         this.answers = tempArray;
-        // console.log("this.answers" + this.answers);
-        console.log("JSON string answers" + JSON.stringify(this.answers[0].pAnswer));
-        console.log("JSON string answers" + JSON.stringify(this.answers));
-        console.log("[1] pAnswer" + this.answers[1].pAnswer);
+
+    }
+    showAnswer(){
+        if (this.answer.pAnswer == true){
+
+        }
     }
 
     answerQuestion( questionNumb: number, correct: boolean ) {
         this.gameService.answerQuestion( this.user.id, this.data.gameID, questionNumb, correct );
     }
 
+    getPlayerAnswer(correct: boolean) {
+        this.isAnswered = true;
+        if(correct){
+            this.right = true;
+            console.log("right");
+            // this.user.score++
+        }
+        else{
+            this.right = false;
+            console.log("wrong");
+        }
+        if(this.count < this.questions.length){
+            this.gameEnded = false;
+        }
+        else{
+            this.gameEnded = true;
+        }
+        this.count++;
+    }
+
+    goToStatsPage() {
+        this.router.navigate(['game-details', { user: JSON.stringify(this.user) }])
+    }
 }
