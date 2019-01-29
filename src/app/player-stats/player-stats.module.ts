@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { PlayerStatsPage } from './player-stats.page';
 import {MatCardModule} from "@angular/material";
+import {HeaderComponent} from "../shared/header/header.component";
+import {SharedModule} from "../shared/shared.module";
 
 const routes: Routes = [
   {
@@ -20,6 +22,7 @@ const routes: Routes = [
       CommonModule,
       FormsModule,
       IonicModule,
+      SharedModule,
       RouterModule.forChild(routes),
       MatCardModule,
 

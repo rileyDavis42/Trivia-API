@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-      this.user = JSON.parse(this.route.snapshot.paramMap.get('user'));
+      this.user = JSON.parse(sessionStorage.getItem('user'));
   }
 
 }
