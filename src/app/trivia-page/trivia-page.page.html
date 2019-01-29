@@ -1,16 +1,15 @@
-<ion-header>
-    <ion-toolbar>
-        <ion-buttons slot="start">
-            <ion-back-button (click)="goBack()"></ion-back-button>
-        </ion-buttons>
-        <ion-title>{{data.category}}</ion-title>
-    </ion-toolbar>
-</ion-header>
+<app-header></app-header>
 
 <ion-content padding>
     <ion-spinner *ngIf="!isLoaded"></ion-spinner>
 <ion-card>
-    <ion-card-header></ion-card-header>
+    <ion-card-header>
+        <ion-toolbar>
+            <ion-buttons slot="end">
+                <ion-back-button (click)="goBack()"></ion-back-button>
+            </ion-buttons>
+        </ion-toolbar>
+    </ion-card-header>
         <ion-card-content>
             <div>
                 Questions

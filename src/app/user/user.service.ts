@@ -39,4 +39,24 @@ export class UserService {
             .catch(error => console.log('Error creating game...', error));
         return String(key);
     }
+
+    updateUser( userID: string, gameID: string ) {
+        this.db.object('Users/' + userID + '/Games/Current Games/' + gameID).valueChanges().subscribe(game => {
+            let score = 0;
+            const questions: Object[] = game['questions'];
+            for (let i = 0; i < questions.length; i++) {
+                if (questions[i]['correct']) {
+                    score += 1;
+                }
+            }
+            score /= questions.length;
+            return score;
+        });
+    }
+
+    discardGame( userID: string, gameID: string ) {
+        this.db.object('Users/' + userID + '/Games/Current Games/' + gameID).remove()
+            .then(_ => console.log('Successfully removed game...'))
+            .catch(error => console.log('Error removing game...', error));
+    }
 }

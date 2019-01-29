@@ -30,7 +30,7 @@ export class GameService {
         return this.http.get(url);
     }
 
-    answerQuestion(userID: string, gameID: string, questionIndex: number, correct: boolean) {
+    answerQuestion( userID: string, gameID: string, questionIndex: number, correct: boolean ) {
         this.db.object('/Users/' + userID + '/Games/Current Games/' + gameID + '/questions/' + questionIndex + '')
             .update( {'correct': correct} )
             .then(_ => console.log(gameID));

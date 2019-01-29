@@ -5,7 +5,7 @@ import { Questions } from '../model/questions';
 import { GameService } from '../user/game.service';
 import { User } from '../user/user';
 import { UserService } from '../user/user.service';
-import {Game} from '../user/game';
+import { Game } from '../user/game';
 
 @Component({
     selector: 'app-trivia-page',
@@ -82,12 +82,6 @@ export class TriviaPagePage implements OnInit {
             tempArray.push({pAnswer: this.questions[this.count]['incorrect_answers'][i], correct: false});
         }
         this.answers = tempArray;
-
-    }
-    showAnswer(){
-        if (this.answer.pAnswer == true){
-
-        }
     }
 
     answerQuestion( questionNumb: number, correct: boolean ) {
