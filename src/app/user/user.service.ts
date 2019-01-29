@@ -23,8 +23,7 @@ export class UserService {
     registerUser( user: User ) {
         const newUserRef: AngularFireObject<any> = this.db.object('Users/' + user.id);
         newUserRef.update(user)
-            .then(_ => console.log('User has successfully been added...'))
-            .catch(error => console.log('Error adding user to database...', error));
+            .catch(error => console.log('Error singing in...', error));
     }
 
     getGames( userID: string ): Observable<any> {
