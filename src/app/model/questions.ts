@@ -3,6 +3,6 @@ export interface Questions {
     type: string;
     difficulty: string;
     question: string;
-    answers: Object[];
+    pAnswers: Array<object>;
     correct: boolean;
 }

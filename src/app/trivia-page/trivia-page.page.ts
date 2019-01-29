@@ -22,7 +22,7 @@ export class TriviaPagePage implements OnInit {
     activeUser: string;
     activeQuestion: string;
     answer: object;
-    answers: Array<object>;
+    answers: Array<any>;
     playerAnswer: string;
     answerResult: string;
     resultComment: string;
@@ -42,7 +42,8 @@ export class TriviaPagePage implements OnInit {
             this.data.questions = this.questions;
             this.isLoaded = true;
             this.data.gameID = this.userService.startNewGame(this.user, this.data);
-            console.log(this.data.questions);
+            this.getAnswers();
+            this.askQuestion();
         });
     }
 
@@ -61,16 +62,19 @@ export class TriviaPagePage implements OnInit {
 
     askQuestion() {
         this.activeQuestion = this.questions[this.count]['question'];
-        this.answers = this.getAnswers();
     }
 
     getAnswers() {
         const tempArray = [];
-       tempArray.push({question: this.questions[this.count]['correct_answer'], correct: true});
-        for (let i = 0; i < this.questions[this.count]['incorrect_answers']; i ++) {
-            tempArray.push({answer: this.questions[this.count]['incorrect_answers'][i], correct: false});
+       tempArray.push({pAnswer: this.questions[this.count]['correct_answer'], correct: true});
+        for (let i = 0; i < this.questions[this.count]['incorrect_answers'].length; i ++) {
+            tempArray.push({pAnswer: this.questions[this.count]['incorrect_answers'][i], correct: false});
         }
-        return tempArray;
+        this.answers = tempArray;
+        // console.log("this.answers" + this.answers);
+        console.log("JSON string answers" + JSON.stringify(this.answers[0].pAnswer));
+        console.log("JSON string answers" + JSON.stringify(this.answers));
+        console.log("[1] pAnswer" + this.answers[1].pAnswer);
     }
 
     answerQuestion( questionNumb: number, correct: boolean ) {

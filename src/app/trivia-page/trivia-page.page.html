@@ -17,13 +17,12 @@
             </div>
             <div>{{ activePlayer }}</div>
             <div>{{ activeQuestion}}</div>
-            <ion-select [(ngModel)]="playerAnswer" placeholder="Difficulty...">
-                <ion-select-option *ngFor="let answer of answers; index as i" value="answer.correct">{{answer[i]}}
-                </ion-select-option>
+            <ion-select [(ngModel)]="playerAnswer" placeholder="Answers">
+                <ion-select-option *ngFor="let answer of answers" [value]="answer.correct">{{ answer.pAnswer }}</ion-select-option>
             </ion-select>
-            <div>{{ answers}}</div>
-            <div>{{ answerResult }}</div>
-            <div> {{ resultComment}}</div>
+            <!--<div>{{ answers}}</div>-->
+            <!--<div>{{ answerResult }}</div>-->
+            <!--<div> {{ resultComment}}</div>-->
             <div></div>
         </ion-card-content>
     </ion-card>
