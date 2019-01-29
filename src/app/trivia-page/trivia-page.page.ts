@@ -5,7 +5,7 @@ import { Questions } from '../model/questions';
 import { GameService } from '../user/game.service';
 import { User } from '../user/user';
 import { UserService } from '../user/user.service';
-import {Game} from '../user/game';
+import { Game } from '../user/game';
 
 @Component({
     selector: 'app-trivia-page',
@@ -72,9 +72,9 @@ export class TriviaPagePage implements OnInit {
         }
         this.answers = tempArray;
         // console.log("this.answers" + this.answers);
-        console.log("JSON string answers" + JSON.stringify(this.answers[0].pAnswer));
-        console.log("JSON string answers" + JSON.stringify(this.answers));
-        console.log("[1] pAnswer" + this.answers[1].pAnswer);
+        console.log('JSON string answers' + JSON.stringify(this.answers[0].pAnswer));
+        console.log('JSON string answers' + JSON.stringify(this.answers));
+        console.log('[1] pAnswer' + this.answers[1].pAnswer);
     }
 
     answerQuestion( questionNumb: number, correct: boolean ) {

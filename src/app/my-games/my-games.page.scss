@@ -1,0 +1,62 @@
+@import "../../global.scss" ;
+
+#content {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+
+  animation-name: bgColor;
+  animation-iteration-count: infinite;
+  animation-duration: 20s;
+}
+
+.no_results {
+  background-color: rgba(255, 255, 255, 0.75);
+  display: block;
+  margin: auto;
+  width: 75%;
+  padding: 10px;
+  border-radius: 10px;
+
+  font-size: 20px;
+  font-family: sans-serif;
+}
+
+.game {
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.75);
+  margin: 5px;
+  border-radius: 10px;
+
+  .game_status {
+    width: 20%;
+    .game_won, .game_not_won {
+      width: 50px;
+      height: 50px;
+      border: 1px solid black;
+      border-radius: 5px;
+      margin-left: 10px;
+      transform: rotate(45deg);
+    }
+    .game_won {
+      background-color: yellow;
+    }
+  }
+
+  .game_details {
+    width: 70%;
+    overflow: hidden;
+    .game_category {
+      font-family: 'Shrikhand', sans-serif;
+    }
+  }
+
+  .game_action {
+    width: 10%;
+    font-size: 45px;
+    padding-bottom: 15%;
+  }
+
+}

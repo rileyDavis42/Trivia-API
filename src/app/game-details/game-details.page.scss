@@ -1,14 +1,8 @@
+@import "../../global.scss" ;
+
 #profile_pic {
   width: 40px;
   border-radius: 100%;
-}
-
-@keyframes bgColor {
-  0% { background-color: #ff0000 }
-  25% { background-color: #ffff00}
-  50% { background-color: #00da00}
-  75% { background-color: #0054ff }
-  100% { background-color: #C90090 }
 }
 
 #content {

@@ -12,6 +12,22 @@
 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+$red: #ff0000;
+$orange: #ffa500;
+$yellow: #ffff00;
+$green: #00DA00;
+$blue: #0054ff;
+$purple: #C90090;
+
+@keyframes bgColor {
+  0% { background-color: $red }
+  25% { background-color: $yellow }
+  50% { background-color: $green }
+  75% { background-color: $blue }
+  90% { background-color: $purple }
+  100% { background-color: $red }
+}
+
 ion-spinner {
   margin: auto;
   display: block;
