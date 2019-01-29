@@ -14,10 +14,9 @@ import { environment } from '../environments/environment';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import {AngularFireAuthModule} from '@angular/fire/auth';
 import {HttpClientModule} from '@angular/common/http';
-import { HeaderComponent } from './header/header.component';
 
 @NgModule({
-    declarations: [AppComponent, HeaderComponent],
+    declarations: [AppComponent],
     entryComponents: [],
     imports: [
         BrowserModule,
@@ -34,7 +33,10 @@ import { HeaderComponent } from './header/header.component';
         SplashScreen,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
     ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    exports: [
+        AppComponent
+    ]
 })
 export class AppModule {
 }
