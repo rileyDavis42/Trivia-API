@@ -1,17 +1,33 @@
-<ion-header>
-    <ion-toolbar>
-        <ion-title>Ongoing Games</ion-title>
-    </ion-toolbar>
-</ion-header>
+<app-header></app-header>
 
-<ion-content padding>
-    <ion-spinner *ngIf="!isLoaded"></ion-spinner>
-    <ng-container *ngIf="isLoaded">
-        <div class="game" *ngFor="let game of my_games">
-            <p>Category: {{game['category']}}</p>
-            <p>Difficulty: {{game['difficulty']}}</p>
-            <p>Players: {{game['players']}}</p>
-            <p>Won: {{game['won']}}</p>
-        </div>
-    </ng-container>
+<ion-content>
+    <div id="content">
+        <ion-spinner *ngIf="!isLoaded"></ion-spinner>
+        <ng-container *ngIf="isLoaded">
+            <div *ngIf="my_games.length < 1" class="no_results">You currently don't have any games going on...go test your knowledge!</div>
+            <div class="game" *ngFor="let game of my_games">
+                <div class="game_status">
+                    <div class="game_won" *ngIf=" game['won'] "></div>
+                    <div class="game_not_won" *ngIf=" !game['won'] "></div>
+                </div>
+                <div class="game_details">
+                    <h4 class="game_category">{{ game['category'] }}</h4>
+                    <p>Difficulty: {{ game['difficulty'] }} </p>
+                    <p>Players: {{ game['players'] }}</p>
+                </div>
+
+                <div class="game_action">
+                    <ion-fab slot="center">
+                        <ion-fab-button>
+                            <ion-icon name="more"></ion-icon>
+                        </ion-fab-button>
+                        <ion-fab-list side="start">
+                            <ion-fab-button style="--background: #00da00" (click)="continueGame(game)"><ion-icon name="arrow-dropright-circle"></ion-icon></ion-fab-button>
+                            <ion-fab-button color="danger" (click)="discardGame(game['ID'])"><ion-icon name="trash"></ion-icon></ion-fab-button>
+                        </ion-fab-list>
+                    </ion-fab>
+                </div>
+            </div>
+        </ng-container>
+    </div>
 </ion-content>

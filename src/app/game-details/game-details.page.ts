@@ -5,6 +5,7 @@ import { GameService } from '../user/game.service';
 import { NavController } from '@ionic/angular';
 import * as _ from 'lodash';
 import { Game } from '../user/game';
+import {UserService} from "../user/user.service";
 
 @Component({
     selector: 'app-game-details',
@@ -18,7 +19,7 @@ export class GameDetailsPage implements OnInit {
     data: Game;
     questionCount = 0;
 
-    constructor(private route: ActivatedRoute, private gameService: GameService, private navCtrl: NavController) {
+    constructor(private route: ActivatedRoute, private gameService: GameService, private navCtrl: NavController, private userService: UserService) {
     }
 
     ngOnInit() {

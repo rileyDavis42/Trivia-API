@@ -15,6 +15,7 @@ export class HomePage {
     password: string;
     profilePic = '';
     user;
+    signedIn = false;
 
     constructor(private userService: UserService, private fireAuth: AngularFireAuth, private zone: NgZone, private router: Router) {  }
 
@@ -33,6 +34,7 @@ export class HomePage {
                     };
                     sessionStorage.setItem('user', JSON.stringify(user));
                     this.userService.registerUser(user);
+                    this.signedIn = true;
                 });
                 this.router.navigate(['game-details', { user: JSON.stringify(user) }]);
             })

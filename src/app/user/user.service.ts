@@ -23,8 +23,7 @@ export class UserService {
     registerUser( user: User ) {
         const newUserRef: AngularFireObject<any> = this.db.object('Users/' + user.id);
         newUserRef.update(user)
-            .then(_ => console.log('User has successfully been added...'))
-            .catch(error => console.log('Error adding user to database...', error));
+            .catch(error => console.log('Error singing in...', error));
     }
 
     getGames( userID: string ): Observable<any> {
@@ -38,5 +37,25 @@ export class UserService {
             .then(_ => console.log('Successfully created game...'))
             .catch(error => console.log('Error creating game...', error));
         return String(key);
+    }
+
+    updateUser( userID: string, gameID: string ) {
+        this.db.object('Users/' + userID + '/Games/Current Games/' + gameID).valueChanges().subscribe(game => {
+            let score = 0;
+            const questions: Object[] = game['questions'];
+            for (let i = 0; i < questions.length; i++) {
+                if (questions[i]['correct']) {
+                    score += 1;
+                }
+            }
+            score /= questions.length;
+            return score;
+        });
+    }
+
+    discardGame( userID: string, gameID: string ) {
+        this.db.object('Users/' + userID + '/Games/Current Games/' + gameID).remove()
+            .then(_ => console.log('Successfully removed game...'))
+            .catch(error => console.log('Error removing game...', error));
     }
 }

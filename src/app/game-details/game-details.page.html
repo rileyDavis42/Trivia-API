@@ -5,6 +5,26 @@
         <div id="form">
             <ion-item>
                 <ion-label>
+                    Number of Players:
+                </ion-label>
+                <ion-select placeholder="# of Players" interface="popover">
+                    <ion-select-option>1</ion-select-option>
+                    <ion-select-option>2</ion-select-option>
+                    <ion-select-option>3</ion-select-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>
+                    Select Players:
+                </ion-label>
+                <ion-select>
+
+                </ion-select>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>
                     Category:
                 </ion-label>
                 <ion-select [(ngModel)]="data.categoryID" placeholder="Category..." interface="popover" (ionChange)="updateCategoryName(); updateQuestionCount()">
@@ -33,7 +53,7 @@
                        [(ngModel)]="data.questions"/>
             </ion-item>
 
-            <ion-button shape="round" color="primary" (click)="startGame()" slot="end">Start Game</ion-button>
+            <ion-button *ngIf="data.questions" shape="round" color="primary" (click)="startGame()" slot="end">Start Game</ion-button>
         </div>
     </div>
 </ion-content>
