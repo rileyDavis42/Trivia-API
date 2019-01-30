@@ -1,15 +1,14 @@
 <app-header></app-header>
 
 <ion-content padding>
+    <ion-header>
+        <ion-toolbar>
+            <ion-icon name="arrow-back" slot="start" (click)="goBack()"></ion-icon>
+        </ion-toolbar>
+    </ion-header>
     <ion-spinner *ngIf="!isLoaded"></ion-spinner>
 <ion-card>
-    <ion-card-header>
-        <ion-toolbar>
-            <ion-buttons slot="end">
-                <ion-back-button (click)="goBack()"></ion-back-button>
-            </ion-buttons>
-        </ion-toolbar>
-    </ion-card-header>
+    <ion-card-header></ion-card-header>
         <ion-card-content>
             <div>
                 Questions
