@@ -31,8 +31,8 @@ export class GameService {
     }
 
     answerQuestion( userID: string, gameID: string, questionIndex: number, correct: boolean ) {
-        this.db.object('/Users/' + userID + '/Games/Current Games/' + gameID + '/questions/' + questionIndex + '')
+        this.db.object('/Users/' + userID + '/Games/Current Games/' + gameID + '/questions/' + questionIndex)
             .update( {'correct': correct} )
-            .then(_ => console.log(gameID));
+            .then(_ => { });
     }
 }
