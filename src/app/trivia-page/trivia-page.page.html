@@ -21,9 +21,11 @@
                 <ion-select-option *ngFor="let answer of answers"  [value]="answer.correct" >{{ answer.pAnswer }}</ion-select-option>
                 <!--<ion-select-option *ngFor="let answer of answers" (click)="getPlayerAnswer(answer.correct)" [value]="answer.correct">{{ strParse(answer.pAnswer) }}</ion-select-option>-->
             </ion-select>
-            <div *ngIf="isAnswered && right">Correct!!</div>
+            <div *ngIf="isAnswered && right">
+                <div>Correct!!</div>
             <ion-button *ngIf="!gameEnded" (click)="startRound()">Next Question</ion-button>
             <ion-button *ngIf="gameEnded" (click)="goToStatsPage(this.user)">See Player Results  </ion-button>
+            </div>
             <div *ngIf="isAnswered && !right">
                 <div>Incorrect!</div>
                 <div>The correct answer is....</div>

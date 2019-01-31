@@ -66,6 +66,7 @@ export class TriviaPagePage implements OnInit {
     }
 
     startRound(){
+        this.isAnswered = false;
         this.askQuestion();
         this.getAnswers();
     }
@@ -109,6 +110,7 @@ export class TriviaPagePage implements OnInit {
     }
 
     goToStatsPage() {
+        this.isAnswered = false;
         this.router.navigate(['game-details', { user: JSON.stringify(this.user) }])
     }
 }
