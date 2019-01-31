@@ -17,6 +17,7 @@ export class UserService {
     }
 
     getAllUsers() {
+        this.usersRef = this.db.object('Users');
         return this.usersRef.valueChanges();
     }
 
