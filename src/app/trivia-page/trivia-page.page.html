@@ -2,46 +2,47 @@
 
 <ion-content padding>
     <ion-spinner *ngIf="!isLoaded"></ion-spinner>
-<ion-card>
-    <ion-card-header>
-        <ion-toolbar>
-            <ion-buttons slot="end">
-                <ion-back-button (click)="goBack()"></ion-back-button>
-            </ion-buttons>
-        </ion-toolbar>
-    </ion-card-header>
-        <ion-card-content>
-            <div>
-                Questions
-            </div>
-            <div>{{ activePlayer }}</div>
-            <div>{{ activeQuestion}}</div>
-            <!--<div>{{ strParse(activeQuestion)}}</div>-->
-            <ion-select #answerValue [(ngModel)]="playerAnswer" placeholder="Answers" (ionChange)="getPlayerAnswer(answerValue.value)">
-                <ion-select-option *ngFor="let answer of answers"  [value]="answer.correct" >{{ answer.pAnswer }}</ion-select-option>
-                <!--<ion-select-option *ngFor="let answer of answers" (click)="getPlayerAnswer(answer.correct)" [value]="answer.correct">{{ strParse(answer.pAnswer) }}</ion-select-option>-->
-            </ion-select>
-            <div *ngIf="isAnswered && right">
-                <div>Correct!!</div>
-            <ion-button *ngIf="!gameEnded" (click)="startRound()">Next Question</ion-button>
-            <ion-button *ngIf="gameEnded" (click)="goToStatsPage(this.user)">See Player Results  </ion-button>
-            </div>
-            <div *ngIf="isAnswered && !right">
-                <div>Incorrect!</div>
-                <div>The correct answer is....</div>
-                <div>{{correctAnswer}}</div>
-                <ion-button *ngIf="!gameEnded" (click)="startRound()">Next Question</ion-button>
-                <ion-button *ngIf="gameEnded" (click)="goToStatsPage(this.user)">See Player Results  </ion-button>
-            </div>
-            <div></div>
-        </ion-card-content>
-    </ion-card>
-    <ion-card>
-        <ion-card-content>
-            <!--<div *ngFor=" player of players">-->
-                <!--<div>{{player.name}}</div>-->
-                <!--<div>{{player.score}}</div>-->
-            <!--</div>-->
-        </ion-card-content>
-    </ion-card>
+    
+    <ion-card id="content" class="{{ questionAnim }} sc-ion-card-md-h sc-ion-card-md-s hydrated">
+        <ion-card-header>
+            <h4>{{ data.category }} - {{ data.difficulty }}</h4>
+        </ion-card-header>
+            <ion-card-content>
+                <div>{{ activePlayer }}</div>
+
+                <ion-list>
+                    <ion-radio-group #answerValue>
+
+                        <ion-list-header>
+                            <div class="question">
+                                <h3>{{ activeQuestion }}</h3>
+                            </div>
+                        </ion-list-header>
+
+                        <ion-item *ngFor="let answer of answers">
+                            <ion-label> {{ answer.pAnswer }}</ion-label>
+                            <ion-radio slot="end" [value]="answer.correct" (ionSelect)="getPlayerAnswer(answer.correct)" disabled="{{ isAnswered }}"></ion-radio>
+                        </ion-item>
+
+                    </ion-radio-group>
+                </ion-list>
+
+                <div *ngIf="isAnswered && right">Correct!!</div>
+                <div *ngIf="isAnswered && !right">
+                    <div>Incorrect!</div>
+                    <div>The correct answer is....</div>
+                    <div>{{correctAnswer}}</div>
+                </div>
+
+                <ion-button *ngIf="isAnswered && !gameEnded" (click)="startRound(); answerValue.value = ''">Next Question</ion-button>
+                <ion-button *ngIf="isAnswered && gameEnded" (click)="goToStatsPage(this.user)">See Player Results  </ion-button>
+                <div></div>
+            </ion-card-content>
+        </ion-card>
+        <ion-card>
+            <ion-card-content>
+                Question # {{ count + 1 }} of {{ questions.length }}
+            </ion-card-content>
+        </ion-card>
+>>>>>>> 2d5413a0ee0dffffce6446381072ef298dfd110f
 </ion-content>
