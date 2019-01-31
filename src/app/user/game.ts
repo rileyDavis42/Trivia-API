@@ -7,5 +7,6 @@ export interface Game {
     difficulty: string;
     players: User[];
     questions: Object[];
+    questionIndex: number;
     gameID: string;
 }

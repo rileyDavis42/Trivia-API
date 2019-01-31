@@ -1,7 +1,6 @@
 import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import { Questions } from '../model/questions';
 import { GameService } from '../user/game.service';
 import { User } from '../user/user';
 import { UserService } from '../user/user.service';
@@ -20,7 +19,7 @@ export class TriviaPagePage implements OnInit {
     isLoaded = false;
 
     activePlayer: string;
-    questions: Questions [] = [];
+    questions: Object[] = [];
     activeUser: string;
     activeQuestion: string;
     answer: any;
@@ -29,7 +28,7 @@ export class TriviaPagePage implements OnInit {
     answerResult: string;
     resultComment: string;
 
-    count = 0;
+    count = 1;
     gameEnded = false;
     correctAnswer: string;
     isAnswered = false;
@@ -47,15 +46,12 @@ export class TriviaPagePage implements OnInit {
 
     ngOnInit() {
         this.data = JSON.parse(this.route.snapshot.paramMap.get('data'));
+        this.questions = this.data.questions;
         this.user = JSON.parse(sessionStorage.getItem('user'));
-        this.gameService.getQuestions(this.data).subscribe(data => {
-            this.questions = data['results'];
-            this.data.questions = this.questions;
-            this.isLoaded = true;
-            this.data.gameID = this.userService.startNewGame(this.user, this.data);
-            this.getAnswers();
-            this.askQuestion();
-        });
+        this.count = this.data.questionIndex;
+        this.getAnswers();
+        this.askQuestion();
+        this.isLoaded = true;
     }
 
     goBack() {
@@ -88,6 +84,7 @@ export class TriviaPagePage implements OnInit {
         for (let i = 0; i < this.questions[this.count]['incorrect_answers'].length; i++) {
             tempArray.push({pAnswer: this.questions[this.count]['incorrect_answers'][i], correct: false});
         }
+        
         this.answers = tempArray;
     }
 
@@ -95,13 +92,13 @@ export class TriviaPagePage implements OnInit {
     getPlayerAnswer (correct: boolean) {
         this.isAnswered = true;
         this.right = correct;
-        this.gameEnded = this.count >= this.questions.length;
         this.questionAnim = 'incorrect';
         if (correct) {
             this.questionAnim = 'correct';
         }
         this.answerQuestion( this.count, correct );
         this.count++;
+        this.gameEnded = this.count >= this.questions.length;
     }
 
     // Saves the result of the question to firebase
@@ -121,6 +118,14 @@ export class TriviaPagePage implements OnInit {
 
     // Goes to the stats page upon finishing the game...
     goToStatsPage() {
-        this.router.navigate(['game-details', {user: JSON.stringify(this.user)}]);
+
+        this.isAnswered = false;
+        this.router.navigate(['game-details', { user: JSON.stringify(this.user) }])
     }
+    //adds a point if the player answered correctly
+    // score(correct: boolean){
+    //     if(correct){
+    //
+    //     }
+    // }
 }

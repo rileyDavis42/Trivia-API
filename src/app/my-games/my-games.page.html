@@ -7,13 +7,14 @@
             <div *ngIf="my_games.length < 1" class="no_results">You currently don't have any games going on...go test your knowledge!</div>
             <div class="game" *ngFor="let game of my_games">
                 <div class="game_status">
-                    <div class="game_won" *ngIf=" game['won'] "></div>
-                    <div class="game_not_won" *ngIf=" !game['won'] "></div>
+                    <div class="game_won" *ngIf=" game.won "></div>
+                    <div class="game_not_won" *ngIf=" !game.won "></div>
                 </div>
                 <div class="game_details">
-                    <h4 class="game_category">{{ game['category'] }}</h4>
-                    <p>Difficulty: {{ game['difficulty'] }} </p>
-                    <p>Players: {{ game['players'] }}</p>
+                    <h4 class="game_category">{{ game.category }}</h4>
+                    <p>Difficulty: {{ game.difficulty }} </p>
+                    <p>Players: {{ game.players }}</p>
+                    <p>Question: {{ game.questionIndex + 1 }} of {{ game.questions.length }}</p>
                 </div>
 
                 <div class="game_action">
@@ -23,7 +24,7 @@
                         </ion-fab-button>
                         <ion-fab-list side="start">
                             <ion-fab-button style="--background: #00da00" (click)="continueGame(game)"><ion-icon name="arrow-dropright-circle"></ion-icon></ion-fab-button>
-                            <ion-fab-button color="danger" (click)="discardGame(game['ID'])"><ion-icon name="trash"></ion-icon></ion-fab-button>
+                            <ion-fab-button color="danger" (click)="disgit cardGame(game['ID'])"><ion-icon name="trash"></ion-icon></ion-fab-button>
                         </ion-fab-list>
                     </ion-fab>
                 </div>
