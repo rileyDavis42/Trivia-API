@@ -44,11 +44,15 @@ export class MyGamesPage implements OnInit {
                 const keys = Object.keys(data);
                 for (let i = 0; i < keys.length; i++) {
                     this.my_games.push(data[keys[i]]);
-                    this.my_games[i]['ID'] = keys[i];
+                    this.my_games[i].gameID = keys[i];
                 }
             }
             this.isLoaded = true;
         });
+    }
+
+    ionViewWillEnter() {
+        this.getGames();
     }
 
 }

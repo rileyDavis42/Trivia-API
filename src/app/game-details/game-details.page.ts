@@ -5,7 +5,8 @@ import { GameService } from '../user/game.service';
 import { NavController } from '@ionic/angular';
 import * as _ from 'lodash';
 import { Game } from '../user/game';
-import {UserService} from "../user/user.service";
+import { UserService } from '../user/user.service';
+import { Questions } from '../model/questions';
 
 @Component({
     selector: 'app-game-details',
@@ -19,7 +20,11 @@ export class GameDetailsPage implements OnInit {
     data: Game;
     questionCount = 0;
 
-    constructor(private route: ActivatedRoute, private gameService: GameService, private navCtrl: NavController, private userService: UserService) {
+    constructor (
+        private route: ActivatedRoute,
+        private gameService: GameService,
+        private navCtrl: NavController,
+        private userService: UserService) {
     }
 
     ngOnInit() {
@@ -29,17 +34,22 @@ export class GameDetailsPage implements OnInit {
             categoryID: string;
             difficulty: string;
             players: User[];
-            questions: boolean[];
+            questions: Questions[];
+            questionIndex = 0;
             won: boolean;
         };
-        this.user = JSON.parse(this.route.snapshot.paramMap.get('user'));
+        this.user = JSON.parse(sessionStorage.getItem('user'));
         this.gameService.getCategories().subscribe(data => {
             this.categories = data['trivia_categories'];
         });
     }
 
     startGame() {
-        this.navCtrl.navigateForward(['trivia-page', { data: JSON.stringify(this.data) }]);
+        this.gameService.getQuestions(this.data).subscribe(data => {
+            this.data.questions = data['results'];
+            this.data.gameID = this.userService.startNewGame(this.user, this.data);
+            this.navCtrl.navigateForward(['trivia-page', { data: JSON.stringify(this.data) }]);
+        });
     }
 
     updateCategoryName() {

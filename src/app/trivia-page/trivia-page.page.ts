@@ -20,7 +20,7 @@ export class TriviaPagePage implements OnInit {
     isLoaded = false;
 
     activePlayer: string;
-    questions: Questions [] = [];
+    questions: Object[] = [];
     activeUser: string;
     activeQuestion: string;
     answer: any;
@@ -47,15 +47,12 @@ export class TriviaPagePage implements OnInit {
 
     ngOnInit() {
         this.data = JSON.parse(this.route.snapshot.paramMap.get('data'));
+        this.questions = this.data.questions;
         this.user = JSON.parse(sessionStorage.getItem('user'));
-        this.gameService.getQuestions(this.data).subscribe(data => {
-            this.questions = data['results'];
-            this.data.questions = this.questions;
-            this.isLoaded = true;
-            this.data.gameID = this.userService.startNewGame(this.user, this.data);
-            this.getAnswers();
-            this.askQuestion();
-        });
+        this.count = this.data.questionIndex;
+        this.getAnswers();
+        this.askQuestion();
+        this.isLoaded = true;
     }
 
     goBack() {
