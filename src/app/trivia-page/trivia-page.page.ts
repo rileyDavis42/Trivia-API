@@ -78,13 +78,21 @@ export class TriviaPagePage implements OnInit {
 
     // Gets the answers from a certain question and sets them to being either correct or incorrect
     getAnswers() {
-        const tempArray = [];
+        let tempArray = [];
+        let tempArray2 = [];
         this.correctAnswer = this.questions[this.count]['correct_answer'];
         tempArray.push({pAnswer: this.questions[this.count]['correct_answer'], correct: true});
         for (let i = 0; i < this.questions[this.count]['incorrect_answers'].length; i++) {
             tempArray.push({pAnswer: this.questions[this.count]['incorrect_answers'][i], correct: false});
         }
-        
+        // while(tempArray.length !==0)
+        // {
+        //     let randomIndex = Math.floor(Math.random() * tempArray.length);
+        //     tempArray2.push(tempArray[randomIndex]);
+        //     tempArray.splice(randomIndex, 1)
+        //     tempArray = tempArray2;
+        // }
+        tempArray.sort((a, b) => (a.pAnswer > b.pAnswer) ? 1 : -1);
         this.answers = tempArray;
     }
 
@@ -120,7 +128,7 @@ export class TriviaPagePage implements OnInit {
     goToStatsPage() {
 
         this.isAnswered = false;
-        this.router.navigate(['game-details', { user: JSON.stringify(this.user) }])
+        this.router.navigate(['player-stats', { user: JSON.stringify(this.user) }])
     }
     //adds a point if the player answered correctly
     // score(correct: boolean){

@@ -1,7 +1,7 @@
 import {User} from './user';
 
 export interface Game {
-    won: boolean;
+    won: string;
     category: string;
     categoryID: string;
     difficulty: string;
