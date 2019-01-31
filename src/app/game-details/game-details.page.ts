@@ -15,6 +15,7 @@ import { Questions } from '../model/questions';
 })
 export class GameDetailsPage implements OnInit {
 
+    users: User[] = [];
     user: User;
     categories: Object;
     data: Game;
@@ -42,6 +43,13 @@ export class GameDetailsPage implements OnInit {
         this.gameService.getCategories().subscribe(data => {
             this.categories = data['trivia_categories'];
         });
+        this.userService.getAllUsers().subscribe(userData => {
+            this.users = [];
+            for (let key in userData) {
+                this.users.push(userData[key])
+            }
+            return
+        })
     }
 
     startGame() {
