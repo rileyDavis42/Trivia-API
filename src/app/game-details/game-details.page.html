@@ -18,8 +18,8 @@
                 <ion-label>
                     Select Players:
                 </ion-label>
-                <ion-select>
-
+                <ion-select multiple="true" cancelText="Never mind..." okText="It's on!">
+                    <ion-select-option *ngFor="let user of users" value="{{user['id']}}">{{user['name']}}</ion-select-option>
                 </ion-select>
             </ion-item>
 
