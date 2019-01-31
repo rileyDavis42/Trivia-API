@@ -84,7 +84,7 @@ export class TriviaPagePage implements OnInit {
         for (let i = 0; i < this.questions[this.count]['incorrect_answers'].length; i++) {
             tempArray.push({pAnswer: this.questions[this.count]['incorrect_answers'][i], correct: false});
         }
-        
+        tempArray.sort((a, b) => (a.pAnswer > b.pAnswer) ? 1 : -1);
         this.answers = tempArray;
     }
 
@@ -103,6 +103,7 @@ export class TriviaPagePage implements OnInit {
 
     // Saves the result of the question to firebase
     answerQuestion(questionNumb: number, correct: boolean) {
+        this.data.questions[questionNumb]['correct'] = correct;
         this.gameService.answerQuestion(this.user.id, this.data.gameID, questionNumb, correct);
     }
 
@@ -120,9 +121,9 @@ export class TriviaPagePage implements OnInit {
     goToStatsPage() {
 
         this.isAnswered = false;
-        this.router.navigate(['game-details', { user: JSON.stringify(this.user) }])
+        this.router.navigate(['game-results', { game: JSON.stringify(this.data) }]);
     }
-    //adds a point if the player answered correctly
+    // adds a point if the player answered correctly
     // score(correct: boolean){
     //     if(correct){
     //
