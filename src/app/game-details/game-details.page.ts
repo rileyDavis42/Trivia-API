@@ -45,11 +45,11 @@ export class GameDetailsPage implements OnInit {
         });
         this.userService.getAllUsers().subscribe(userData => {
             this.users = [];
-            for (let key in userData) {
-                this.users.push(userData[key])
+            for (const key in userData) {
+                this.users.push(userData[key]);
             }
-            return
-        })
+            return;
+        });
     }
 
     startGame() {
