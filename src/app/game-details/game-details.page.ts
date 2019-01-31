@@ -34,10 +34,10 @@ export class GameDetailsPage implements OnInit {
             category: string;
             categoryID: string;
             difficulty: string;
-            players: User[];
+            players: string[];
             questions: Questions[];
             questionIndex = 0;
-            won: boolean;
+            won: string;
         };
         this.user = JSON.parse(sessionStorage.getItem('user'));
         this.gameService.getCategories().subscribe(data => {
@@ -55,7 +55,8 @@ export class GameDetailsPage implements OnInit {
     startGame() {
         this.gameService.getQuestions(this.data).subscribe(data => {
             this.data.questions = data['results'];
-            this.data.gameID = this.userService.startNewGame(this.user, this.data);
+            this.data.players.push(this.user.id);
+            this.data.gameID = this.userService.startNewGame(this.data);
             this.navCtrl.navigateForward(['trivia-page', { data: JSON.stringify(this.data) }]);
         });
     }

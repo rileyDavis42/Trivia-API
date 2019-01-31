@@ -5,7 +5,7 @@ export interface Game {
     category: string;
     categoryID: string;
     difficulty: string;
-    players: User[];
+    players: string[];
     questions: Object[];
     questionIndex: number;
     gameID: string;
