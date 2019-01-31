@@ -66,6 +66,12 @@ export class TriviaPagePage implements OnInit {
         this.activeQuestion = this.strParse(this.questions[this.count]['question']);
     }
 
+    startRound(){
+        this.isAnswered = false;
+        this.askQuestion();
+        this.getAnswers();
+    }
+
     // Used by askQuestion() to replace html symbols with their proper symbol
     strParse(txt: string): string {
         const findQuotes = RegExp('&#039;', 'g');
@@ -118,6 +124,8 @@ export class TriviaPagePage implements OnInit {
 
     // Goes to the stats page upon finishing the game...
     goToStatsPage() {
-        this.router.navigate(['game-details', {user: JSON.stringify(this.user)}]);
+
+        this.isAnswered = false;
+        this.router.navigate(['game-details', { user: JSON.stringify(this.user) }])
     }
 }
