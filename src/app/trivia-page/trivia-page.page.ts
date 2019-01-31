@@ -84,7 +84,7 @@ export class TriviaPagePage implements OnInit {
         for (let i = 0; i < this.questions[this.count]['incorrect_answers'].length; i++) {
             tempArray.push({pAnswer: this.questions[this.count]['incorrect_answers'][i], correct: false});
         }
-
+        tempArray.sort((a, b) => (a.pAnswer > b.pAnswer) ? 1 : -1);
         this.answers = tempArray;
     }
 
