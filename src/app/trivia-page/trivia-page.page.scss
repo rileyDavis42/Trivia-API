@@ -1,0 +1,50 @@
+@import '../../global.scss';
+
+@keyframes shake {
+  0% { transform: rotate(0deg); }
+  33% { transform: rotate(5deg); }
+  66% { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes bounce {
+  0% { bottom: 0 }
+  45% { bottom: 50px }
+  60% { bottom: 0 }
+  70% { bottom: 25px }
+  85% { bottom: 0 }
+  95% { bottom: 5px }
+  100% { bottom: 0 }
+}
+
+ion-content {
+  --background: #C90090;
+}
+
+#content {
+  transition: all 200ms;
+  transition-property: background-color, height;
+}
+
+.default {
+  background-color: #FFF;
+}
+
+.incorrect {
+  background-color: #ff0000;
+  animation-name: shake;
+  animation-iteration-count: 1;
+  animation-duration: 200ms;
+}
+
+.correct {
+  background-color: #00DA00;
+  animation-name: bounce;
+  animation-iteration-count: 1;
+  animation-duration: 1s;
+}
+
+.question {
+  background: #fff;
+  font-family: 'Poppins', sans-serif;
+}
