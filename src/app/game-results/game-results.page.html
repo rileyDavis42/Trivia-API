@@ -1,9 +1,10 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>game-results</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>Results</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-
+    <h1>{{ game.category }} - {{ game.difficulty }}</h1>
+    <p>Score: {{ score }} / {{ questions.length }}</p>
 </ion-content>
