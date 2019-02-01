@@ -34,7 +34,7 @@ export class GameDetailsPage implements OnInit {
             category: string;
             categoryID: string;
             difficulty: string;
-            players: string[];
+            players: string[] = [];
             questions: Questions[];
             questionIndex = 0;
             won: string;
