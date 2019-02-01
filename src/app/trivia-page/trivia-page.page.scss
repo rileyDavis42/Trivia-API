@@ -48,3 +48,23 @@ ion-content {
   background: #fff;
   font-family: 'Poppins', sans-serif;
 }
+.answerRight{
+  font-family: 'Poppins', sans-serif;
+  background: lawngreen;
+  margin: auto;
+  display: block;
+  font-size: 20px;
+  color: black;
+}
+.answerWrong{
+  font-family: 'Poppins', sans-serif;
+  background: lightpink;
+  margin: auto;
+  display: block;
+  font-size: 20px;
+  color: black;
+}
+.result{
+  font-size: 25px;
+  font-weight: bold;
+}

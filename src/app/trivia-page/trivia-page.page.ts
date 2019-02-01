@@ -24,15 +24,16 @@ export class TriviaPagePage implements OnInit {
     activeQuestion: string;
     answer: any;
     answers: Array<any>;
-    playerAnswer: string;
-    answerResult: string;
-    resultComment: string;
-
-    count = 1;
+    count = 0;
     gameEnded = false;
     correctAnswer: string;
     isAnswered = false;
     right: boolean;
+    player: any;
+    players = [] = [];
+    playerNames: Array<string> = [];
+    winner: any;
+    askedQuestions: Array<boolean>;
 
     questionAnim = 'default';
 
@@ -52,6 +53,8 @@ export class TriviaPagePage implements OnInit {
         this.getAnswers();
         this.askQuestion();
         this.isLoaded = true;
+        this.players = this.data.players;
+        this.getPlayerNames();
     }
 
     goBack() {
@@ -62,6 +65,7 @@ export class TriviaPagePage implements OnInit {
 
     // Sets the currently active question
     askQuestion() {
+        //this.count++;
         this.activeQuestion = this.strParse(this.questions[this.count]['question']);
     }
 
@@ -122,5 +126,16 @@ export class TriviaPagePage implements OnInit {
 
         this.isAnswered = false;
         this.router.navigate(['game-results', { game: JSON.stringify(this.data) }]);
+    }
+    getPlayerNames(){
+        let playerName: string;
+        for(let i = 0; i< this.players.length; i++){
+           this.userService.getPlayerData(this.players[i]).subscribe(data => {
+               playerName = data['name'];
+                this.playerNames.push(playerName);
+        });
+
+        }
+        return this.playerNames;
     }
 }

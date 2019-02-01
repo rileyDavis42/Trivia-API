@@ -20,7 +20,7 @@ export class UserService {
         this.usersRef = this.db.object('Users');
         return this.usersRef.valueChanges();
     }
-
+    //gets all of the player info
     getPlayerData( userID ): Observable<any> {
         return this.db.object('Users/' + userID).valueChanges();
     }
