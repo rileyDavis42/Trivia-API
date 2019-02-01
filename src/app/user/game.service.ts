@@ -30,11 +30,11 @@ export class GameService {
         return this.http.get(url);
     }
 
-    answerQuestion( userID: string, gameID: string, questionIndex: number, correct: boolean ) {
-        this.db.object('/Users/' + userID + '/Games/Current Games/' + gameID)
+    answerQuestion( gameID: string, questionIndex: number, correct: boolean ) {
+        this.db.object('/Games/' + gameID )
             .update( {'questionIndex': questionIndex + 1} )
             .then(_ => { });
-        this.db.object('/Users/' + userID + '/Games/Current Games/' + gameID + '/questions/' + questionIndex)
+        this.db.object('/Games/' + gameID + '/questions/' + questionIndex)
             .update( {'correct': correct} )
             .then(_ => { });
     }
