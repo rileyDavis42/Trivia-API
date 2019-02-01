@@ -2,6 +2,12 @@
 
 <ion-content padding>
     <ion-spinner *ngIf="!isLoaded"></ion-spinner>
+    <!--<ion-card>-->
+        <!--<ion-card-header>Players</ion-card-header>-->
+        <!--<ion-card-content>-->
+            <!--<div *ngFor="player of players">{{player.name}}</div>-->
+        <!--</ion-card-content>-->
+    <!--</ion-card>-->
 
     <ion-card id="content" class="{{ questionAnim }} sc-ion-card-md-h sc-ion-card-md-s hydrated">
         <ion-card-header>
@@ -27,12 +33,11 @@
                     </ion-radio-group>
                 </ion-list>
 
-                <div *ngIf="isAnswered && right">Correct!!</div>
-                <div *ngIf="isAnswered && !right">
-                    <div>Incorrect!</div>
-                    <div>The correct answer is....</div>
-                    <div>{{correctAnswer}}</div>
-                </div>
+                <ion-card class="answerRight" *ngIf="isAnswered && right"><div class="result">Correct!!</div></ion-card>
+                <ion-card class="answerWrong" *ngIf="isAnswered && !right">
+                    <div class="result">Incorrect!</div>
+                    <div>The correct answer is....{{correctAnswer}}</div>
+                </ion-card>
 
                 <ion-button *ngIf="isAnswered && !gameEnded" (click)="startRound(); answerValue.value = ''">Next Question</ion-button>
                 <ion-button *ngIf="isAnswered && gameEnded" (click)="goToStatsPage(this.user)">See Player Results  </ion-button>
@@ -40,8 +45,15 @@
             </ion-card-content>
         </ion-card>
         <ion-card>
-            <ion-card-content>
+            <ion-card-content *ngIf="!isAnswered">
                 Question # {{ count + 1 }} of {{ questions.length }}
             </ion-card-content>
         </ion-card>
+    <!--<ion-card>-->
+        <!--<ion-card-header>Game Stats</ion-card-header>-->
+      <!--<ion-card-content>-->
+          <!--<ion-list-header>Player in the lead is {{ winner }}</ion-list-header>-->
+          <!--<ion-list *ngFor="player of players"><div>{{player.name}}</div><div>{{player.score}}/{{askedQuesitons}}</div></ion-list>-->
+      <!--</ion-card-content>-->
+    <!--</ion-card>-->
 </ion-content>

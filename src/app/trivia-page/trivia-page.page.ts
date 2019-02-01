@@ -24,15 +24,15 @@ export class TriviaPagePage implements OnInit {
     activeQuestion: string;
     answer: any;
     answers: Array<any>;
-    playerAnswer: string;
-    answerResult: string;
-    resultComment: string;
-
-    count = 1;
+    count = 0;
     gameEnded = false;
     correctAnswer: string;
     isAnswered = false;
     right: boolean;
+    player: any;
+    players = [] = [];
+    winner: any;
+    askedQuestions: Array<boolean>;
 
     questionAnim = 'default';
 
@@ -62,6 +62,7 @@ export class TriviaPagePage implements OnInit {
 
     // Sets the currently active question
     askQuestion() {
+        //this.count++;
         this.activeQuestion = this.strParse(this.questions[this.count]['question']);
     }
 
