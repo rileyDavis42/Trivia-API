@@ -2,12 +2,12 @@
 
 <ion-content padding>
     <ion-spinner *ngIf="!isLoaded"></ion-spinner>
-    <!--<ion-card>-->
-        <!--<ion-card-header>Players</ion-card-header>-->
-        <!--<ion-card-content>-->
-            <!--<div *ngFor="player of players">{{player.name}}</div>-->
-        <!--</ion-card-content>-->
-    <!--</ion-card>-->
+    <ion-card>
+        <ion-card-header>Players</ion-card-header>
+        <ion-card-content>
+            <div *ngFor="let player of playerNames">{{player}}</div>
+        </ion-card-content>
+    </ion-card>
 
     <ion-card id="content" class="{{ questionAnim }} sc-ion-card-md-h sc-ion-card-md-s hydrated">
         <ion-card-header>
