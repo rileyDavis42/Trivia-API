@@ -13,7 +13,9 @@
                 <div class="game_details">
                     <h4 class="game_category">{{ game.category }}</h4>
                     <p>Difficulty: {{ game.difficulty }} </p>
-                    <p>Players: {{ game.players }}</p>
+                    <div>Players:
+                        <p *ngFor="let player of game['players']">{{ player }}</p>
+                    </div>
                     <p>Question: {{ game.questionIndex + 1 }} of {{ game.questions.length }}</p>
                 </div>
 

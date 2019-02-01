@@ -21,14 +21,18 @@ export class UserService {
         return this.usersRef.valueChanges();
     }
 
+    getPlayerData( userID ): Observable<any> {
+        return this.db.object('Users/' + userID).valueChanges();
+    }
+
     registerUser( user: User ) {
         const newUserRef: AngularFireObject<any> = this.db.object('Users/' + user.id);
         newUserRef.update(user)
             .catch(error => console.log('Error singing in...', error));
     }
 
-    getGames( userID: string ): Observable<any> {
-        return this.db.object( '/Game/').valueChanges();
+    getGames(): Observable<any> {
+        return this.db.object('/Game/').valueChanges();
     }
 
     startNewGame(game: Game ): string {

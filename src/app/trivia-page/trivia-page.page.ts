@@ -105,7 +105,7 @@ export class TriviaPagePage implements OnInit {
     // Saves the result of the question to firebase
     answerQuestion(questionNumb: number, correct: boolean) {
         this.data.questions[questionNumb]['correct'] = correct;
-        this.gameService.answerQuestion(this.data.gameID, questionNumb, correct);
+        this.gameService.answerQuestion( this.data.gameID, questionNumb, correct );
     }
 
     // Rotates to the next question
@@ -124,10 +124,4 @@ export class TriviaPagePage implements OnInit {
         this.isAnswered = false;
         this.router.navigate(['game-results', { game: JSON.stringify(this.data) }]);
     }
-    // adds a point if the player answered correctly
-    // score(correct: boolean){
-    //     if(correct){
-    //
-    //     }
-    // }
 }
