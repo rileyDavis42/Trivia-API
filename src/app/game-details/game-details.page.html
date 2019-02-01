@@ -19,7 +19,7 @@
                     Select Players:
                 </ion-label>
                 <ion-select multiple="true" [(ngModel)]="data.players" *ngIf="data.numOfPlayers"
-                            (ionChange)="disableInactive()" placeholder="Select Players">
+                            (ionChange)="checkPlayers()" placeholder="Select Players">
                     <ion-select-option *ngFor="let user of users" value="{{user['id']}}" selected="false" disabled="false">
                         {{user['name']}}
                     </ion-select-option>
