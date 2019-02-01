@@ -30,19 +30,12 @@ export class GameService {
         return this.http.get(url);
     }
 
-<<<<<<< HEAD
-    answerQuestion( gameID: string, questionIndex: number, correct: boolean ) {
-        this.db.object('/Games/' + gameID )
-            .update( {'questionIndex': questionIndex + 1} )
-            .then(_ => { });
-        this.db.object('/Games/' + gameID + '/questions/' + questionIndex)
-=======
     answerQuestion(gameID: string, questionIndex: number, correct: boolean ) {
         this.db.object('/Game/' + gameID)
             .update( {'questionIndex': questionIndex + 1} )
             .then(_ => { });
+
         this.db.object('/Game/' + gameID + '/questions/' + questionIndex)
->>>>>>> 8a558f89ebbe74f36b9cc15297b0326049859532
             .update( {'correct': correct} )
             .then(_ => { });
     }
