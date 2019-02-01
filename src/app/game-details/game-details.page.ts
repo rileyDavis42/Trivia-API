@@ -35,6 +35,7 @@ export class GameDetailsPage implements OnInit {
             categoryID: string;
             difficulty: string;
             players: string[] = [];
+            numOfPlayers: number;
             questions: Questions[];
             questionIndex = 0;
             won: string;
@@ -52,8 +53,9 @@ export class GameDetailsPage implements OnInit {
         });
     }
 
-    disableInactive(){
-        
+    disableInactive(): boolean{
+        console.log('hello');
+        return false;
     }
 
     startGame() {

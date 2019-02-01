@@ -7,7 +7,7 @@
                 <ion-label>
                     Number of Players:
                 </ion-label>
-                <ion-select placeholder="# of Players" interface="popover">
+                <ion-select [(ngModel)]="data.numOfPlayers" placeholder="# of Players" interface="popover">
                     <ion-select-option>1</ion-select-option>
                     <ion-select-option>2</ion-select-option>
                     <ion-select-option>3</ion-select-option>
@@ -18,7 +18,8 @@
                 <ion-label>
                     Select Players:
                 </ion-label>
-                <ion-select multiple="true" [(ngModel)]="data.players" placeholder="Select Players" (ionChange)="disableInactive()">
+                <ion-select multiple="true" [(ngModel)]="data.players" *ngIf="data.numOfPlayers"
+                            (ionChange)="disableInactive()" placeholder="Select Players">
                     <ion-select-option *ngFor="let user of users" value="{{user['id']}}" selected="false" disabled="false">
                         {{user['name']}}
                     </ion-select-option>
