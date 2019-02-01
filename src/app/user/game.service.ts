@@ -34,6 +34,7 @@ export class GameService {
         this.db.object('/Game/' + gameID)
             .update( {'questionIndex': questionIndex + 1} )
             .then(_ => { });
+
         this.db.object('/Game/' + gameID + '/questions/' + questionIndex)
             .update( {'correct': correct} )
             .then(_ => { });
