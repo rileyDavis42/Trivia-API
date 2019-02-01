@@ -52,10 +52,15 @@ export class GameDetailsPage implements OnInit {
         });
     }
 
+    disableInactive(){
+        
+    }
+
     startGame() {
         this.gameService.getQuestions(this.data).subscribe(data => {
             this.data.questions = data['results'];
             this.data.players.push(this.user.id);
+            console.log(this.data.players);
             this.data.gameID = this.userService.startNewGame(this.data);
             this.navCtrl.navigateForward(['trivia-page', { data: JSON.stringify(this.data) }]);
         });
