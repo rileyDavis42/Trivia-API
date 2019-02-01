@@ -31,7 +31,7 @@ export class MyGamesPage implements OnInit {
 
     discardGame( gameID: string ) {
         if (confirm('Discard Game?')) {
-            this.userService.discardGame(this.user['id'], gameID);
+            this.userService.discardGame(gameID);
             this.getGames();
         }
     }
