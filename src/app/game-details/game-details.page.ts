@@ -20,6 +20,7 @@ export class GameDetailsPage implements OnInit {
     categories: Object;
     data: Game;
     questionCount = 0;
+    playersSelected = [];
 
     constructor (
         private route: ActivatedRoute,
@@ -35,6 +36,7 @@ export class GameDetailsPage implements OnInit {
             categoryID: string;
             difficulty: string;
             players: string[] = [];
+            numOfPlayers: number;
             questions: Questions[];
             questionIndex = 0;
             won: string;
@@ -50,10 +52,20 @@ export class GameDetailsPage implements OnInit {
             }
             return;
         });
-    }
+    };
 
-    disableInactive(){
-        
+    checkPlayers(){
+        this.playersSelected = [];
+        this.playersSelected.push(this.data.players);
+        console.log(this.playersSelected.length);
+        console.log(this.data.numOfPlayers - 2);
+        if (this.playersSelected.length < (this.data.numOfPlayers - 2)) {
+            alert('Not enough players selected');
+        } else if(this.playersSelected.length > (this.data.numOfPlayers - 2)) {
+            alert('Too many players selected');
+        } else {
+            return
+        }
     }
 
     startGame() {
