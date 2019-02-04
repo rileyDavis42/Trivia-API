@@ -54,6 +54,7 @@ export class TriviaPagePage implements OnInit {
         this.getAnswers();
         this.askQuestion();
         this.getPlayerNames();
+        this.getActivePlayer();
         this.isLoaded = true;
     }
 
@@ -119,6 +120,7 @@ export class TriviaPagePage implements OnInit {
 
         this.askQuestion();
         this.getAnswers();
+        this.getActivePlayer();
     }
 
     // Goes to the stats page upon finishing the game...
@@ -138,5 +140,13 @@ export class TriviaPagePage implements OnInit {
 
         }
         return this.playerNames;
+    }
+    getActivePlayer() {
+        const numPlayers = this.players.length;
+        let temp = 0;
+        temp = this.count % numPlayers;
+        this.activePlayer = this.players[temp];
+        console.log(this.activePlayer);
+
     }
 }

@@ -54,17 +54,17 @@ export class GameDetailsPage implements OnInit {
         });
     };
 
-    checkPlayers(){
+    checkPlayers() {
         this.playersSelected = [];
         this.playersSelected.push(this.data.players);
         console.log(this.playersSelected.length);
         console.log(this.data.numOfPlayers - 2);
         if (this.playersSelected.length < (this.data.numOfPlayers - 2)) {
             alert('Not enough players selected');
-        } else if(this.playersSelected.length > (this.data.numOfPlayers - 2)) {
+        } else if (this.playersSelected.length > (this.data.numOfPlayers - 2)) {
             alert('Too many players selected');
         } else {
-            return
+            return;
         }
     }
 
