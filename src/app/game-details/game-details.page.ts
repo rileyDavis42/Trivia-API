@@ -7,6 +7,9 @@ import * as _ from 'lodash';
 import { Game } from '../user/game';
 import { UserService } from '../user/user.service';
 import { Questions } from '../model/questions';
+import {forEach} from "@angular-devkit/schematics";
+import {promise} from "selenium-webdriver";
+import {Observable} from "rxjs";
 
 @Component({
     selector: 'app-game-details',
@@ -21,6 +24,7 @@ export class GameDetailsPage implements OnInit {
     data: Game;
     questionCount = 0;
     playersSelected = [];
+    correctAmount: boolean;
 
     constructor (
         private route: ActivatedRoute,
@@ -55,16 +59,15 @@ export class GameDetailsPage implements OnInit {
     };
 
     checkPlayers(){
-        this.playersSelected = [];
-        this.playersSelected.push(this.data.players);
-        console.log(this.playersSelected.length);
-        console.log(this.data.numOfPlayers - 2);
-        if (this.playersSelected.length < (this.data.numOfPlayers - 2)) {
+        console.log(this.data.players);
+        if ((this.data.players.length + 1) < this.data.numOfPlayers) {
             alert('Not enough players selected');
-        } else if(this.playersSelected.length > (this.data.numOfPlayers - 2)) {
+            return this.correctAmount = false;
+        } else if((this.data.players.length + 1) > this.data.numOfPlayers) {
             alert('Too many players selected');
+            return this.correctAmount = false;
         } else {
-            return
+            return this.correctAmount = true;
         }
     }
 
