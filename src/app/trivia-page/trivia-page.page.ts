@@ -61,10 +61,7 @@ export class TriviaPagePage implements OnInit {
         this.askQuestion();
         this.getPlayerNames();
         this.getActivePlayer();
-<<<<<<< HEAD
         this.getScoreArray();
-=======
->>>>>>> 8bd5e48e5e59c29c0ffb42222587ddc24b3023a1
         this.isLoaded = true;
     }
 
