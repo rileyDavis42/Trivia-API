@@ -14,7 +14,7 @@
                     <h4 class="game_category">{{ game.category }}</h4>
                     <p>Difficulty: {{ game.difficulty }} </p>
                     <div>Players:
-                        <p *ngFor="let player of game['players']">{{ player }}</p>
+                        <p *ngFor="let player of game['playerNames']">{{ player }}</p>
                     </div>
                     <p>Question: {{ game.questionIndex + 1 }} of {{ game.questions.length }}</p>
                 </div>
@@ -26,7 +26,7 @@
                         </ion-fab-button>
                         <ion-fab-list side="start">
                             <ion-fab-button style="--background: #00da00" (click)="continueGame(game)"><ion-icon name="arrow-dropright-circle"></ion-icon></ion-fab-button>
-                            <ion-fab-button color="danger" (click)="discardGame(game['ID'])"><ion-icon name="trash"></ion-icon></ion-fab-button>
+                            <ion-fab-button color="danger" (click)="discardGame(game['gameID'])"><ion-icon name="trash"></ion-icon></ion-fab-button>
                         </ion-fab-list>
                     </ion-fab>
                 </div>

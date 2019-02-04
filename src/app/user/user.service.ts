@@ -20,7 +20,7 @@ export class UserService {
         this.usersRef = this.db.object('Users');
         return this.usersRef.valueChanges();
     }
-    //gets all of the player info
+    // gets all of the player info
     getPlayerData( userID ): Observable<any> {
         return this.db.object('Users/' + userID).valueChanges();
     }
@@ -46,7 +46,7 @@ export class UserService {
 
     discardGame( gameID: string ) {
         this.db.object( '/Game/' + gameID).remove()
-            .then(_ => console.log('Successfully removed game...'))
+            .then(_ => console.log(gameID, 'Successfully removed game...'))
             .catch(error => console.log('Error removing game...', error));
     }
 }
