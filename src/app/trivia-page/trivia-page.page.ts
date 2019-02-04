@@ -34,8 +34,8 @@ export class TriviaPagePage implements OnInit {
     playerNames: Array<string> = [];
     winner: any;
     askedQuestions: Array<boolean>;
-    temp: number = 0;
-    score: number = 0;
+    temp = 0;
+    score = 0;
 
     questionAnim = 'default';
 
@@ -146,11 +146,11 @@ export class TriviaPagePage implements OnInit {
 
     getActivePlayer() {
         const numPlayers = this.players.length;
-        let temp = 0;
-        temp = this.count % numPlayers;
-        this.activePlayer = this.players[temp];
+        this.temp = this.count % numPlayers;
+        this.activePlayer = this.players[this.temp];
         console.log(this.activePlayer);
     }
+
     // getScore(){
     //     for(let i = 0; i < this.players.length; i++) {
     //         let score = 0;

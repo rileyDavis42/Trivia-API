@@ -7,9 +7,6 @@ import * as _ from 'lodash';
 import { Game } from '../user/game';
 import { UserService } from '../user/user.service';
 import { Questions } from '../model/questions';
-import {forEach} from "@angular-devkit/schematics";
-import {promise} from "selenium-webdriver";
-import {Observable} from "rxjs";
 
 @Component({
     selector: 'app-game-details',

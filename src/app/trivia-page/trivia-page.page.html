@@ -1,15 +1,18 @@
 <app-header></app-header>
 
-<ion-content padding>
+<ion-content padding class="player{{temp}} hydrated">
     <ion-spinner *ngIf="!isLoaded"></ion-spinner>
-    <ion-card>
+    <ion-card *ngIf="isLoaded" class="info">
         <ion-card-header>Players</ion-card-header>
         <ion-card-content>
-            <div *ngFor="let player of playerNames">{{player}}</div>
+            <div *ngFor="let player of playerNames; let i = index" class="player{{i}}">
+                <div *ngIf="temp === i" style="font-size: 25px; font-weight: bold">{{i + 1}}.{{ player }}</div>
+                <p *ngIf="temp !== i">{{i + 1}}.{{player }}</p>
+            </div>
         </ion-card-content>
     </ion-card>
 
-    <ion-card id="content" class="{{ questionAnim }} sc-ion-card-md-h sc-ion-card-md-s hydrated">
+    <ion-card *ngIf="players[temp]['id'] === user['id'] && isLoaded " id="content" class="{{ questionAnim }} sc-ion-card-md-h sc-ion-card-md-s hydrated">
         <ion-card-header>
             <h4>{{ data.category }} - {{ data.difficulty }}</h4>
         </ion-card-header>
@@ -26,7 +29,7 @@
                         </ion-list-header>
 
                         <ion-item *ngFor="let answer of answers">
-                            <ion-label> {{ answer.pAnswer }}</ion-label>
+                            <ion-label> {{ strParse(answer.pAnswer) }}</ion-label>
                             <ion-radio slot="end" [value]="answer.correct" (ionSelect)="getPlayerAnswer(answer.correct)" disabled="{{ isAnswered }}"></ion-radio>
                         </ion-item>
 
@@ -44,11 +47,16 @@
                 <div></div>
             </ion-card-content>
         </ion-card>
-        <ion-card>
-            <ion-card-content *ngIf="!isAnswered">
-                Question # {{ count + 1 }} of {{ questions.length }}
-            </ion-card-content>
-        </ion-card>
+gi
+    <ion-card *ngIf="players[temp]['id'] !== user['id'] && isLoaded">
+        <h1>It's {{ playerNames[temp] }}'s turn!</h1>
+    </ion-card>
+
+    <ion-card class="info" *ngIf="isLoaded">
+        <ion-card-content *ngIf="!isAnswered">
+            Question # {{ count + 1 }} of {{ questions.length }}
+        </ion-card-content>
+    </ion-card>
     <!--<ion-card>-->
         <!--<ion-card-header>Game Stats</ion-card-header>-->
       <!--<ion-card-content>-->
