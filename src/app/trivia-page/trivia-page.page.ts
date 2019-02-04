@@ -57,11 +57,7 @@ export class TriviaPagePage implements OnInit {
         this.askQuestion();
         this.getPlayerNames();
         this.getActivePlayer();
-<<<<<<< HEAD
-
-=======
         this.isLoaded = true;
->>>>>>> c862bacd37a83d5dcd97dcf53cb31246428710b6
     }
 
     goBack() {
@@ -154,8 +150,6 @@ export class TriviaPagePage implements OnInit {
         temp = this.count % numPlayers;
         this.activePlayer = this.players[temp];
         console.log(this.activePlayer);
-
-        }
     }
     // getScore(){
     //     for(let i = 0; i < this.players.length; i++) {
