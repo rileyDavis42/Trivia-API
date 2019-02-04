@@ -34,6 +34,8 @@ export class TriviaPagePage implements OnInit {
     playerNames: Array<string> = [];
     winner: any;
     askedQuestions: Array<boolean>;
+    temp: number = 0;
+    score: number = 0;
 
     questionAnim = 'default';
 
@@ -50,11 +52,16 @@ export class TriviaPagePage implements OnInit {
         this.questions = this.data.questions;
         this.user = JSON.parse(sessionStorage.getItem('user'));
         this.count = this.data.questionIndex;
+        this.players = this.data.players;
         this.getAnswers();
         this.askQuestion();
-        this.isLoaded = true;
-        this.players = this.data.players;
         this.getPlayerNames();
+        this.getActivePlayer();
+<<<<<<< HEAD
+
+=======
+        this.isLoaded = true;
+>>>>>>> c862bacd37a83d5dcd97dcf53cb31246428710b6
     }
 
     goBack() {
@@ -65,7 +72,7 @@ export class TriviaPagePage implements OnInit {
 
     // Sets the currently active question
     askQuestion() {
-        //this.count++;
+        // this.count++;
         this.activeQuestion = this.strParse(this.questions[this.count]['question']);
     }
 
@@ -119,6 +126,7 @@ export class TriviaPagePage implements OnInit {
 
         this.askQuestion();
         this.getAnswers();
+        this.getActivePlayer();
     }
 
     // Goes to the stats page upon finishing the game...
@@ -127,15 +135,38 @@ export class TriviaPagePage implements OnInit {
         this.isAnswered = false;
         this.router.navigate(['game-results', { game: JSON.stringify(this.data) }]);
     }
-    getPlayerNames(){
+
+    getPlayerNames() {
         let playerName: string;
-        for(let i = 0; i< this.players.length; i++){
-           this.userService.getPlayerData(this.players[i]).subscribe(data => {
-               playerName = data['name'];
+        for (let i = 0; i < this.players.length; i++) {
+            this.userService.getPlayerData(this.players[i]).subscribe(data => {
+                playerName = data['name'];
                 this.playerNames.push(playerName);
-        });
+            });
 
         }
         return this.playerNames;
     }
+
+    getActivePlayer() {
+        const numPlayers = this.players.length;
+        let temp = 0;
+        temp = this.count % numPlayers;
+        this.activePlayer = this.players[temp];
+        console.log(this.activePlayer);
+
+        }
+    }
+    // getScore(){
+    //     for(let i = 0; i < this.players.length; i++) {
+    //         let score = 0;
+    //         for(let j = 0; j < this.questions.length; j++) {
+    //             if ((this.questions[j].playerId === this.players[this.temp]) && (this.right === true)) {
+    //                 score++;
+    //             }
+    //         return score;
+    //         }
+    //     }
+    // }
+
 }

@@ -62,12 +62,11 @@ export class GameDetailsPage implements OnInit {
         console.log(this.data.players);
         if ((this.data.players.length + 1) < this.data.numOfPlayers) {
             alert('Not enough players selected');
-            return this.correctAmount = false;
         } else if((this.data.players.length + 1) > this.data.numOfPlayers) {
             alert('Too many players selected');
-            return this.correctAmount = false;
         } else {
             return this.correctAmount = true;
+
         }
     }
 
@@ -76,6 +75,11 @@ export class GameDetailsPage implements OnInit {
             this.data.questions = data['results'];
             this.data.players.push(this.user.id);
             console.log(this.data.players);
+
+            for (let i = 0; i < this.data.questions.length; i++) {
+                this.data.questions[i]['playerID'] = this.data.players[i % this.data.players.length];
+            }
+
             this.data.gameID = this.userService.startNewGame(this.data);
             this.navCtrl.navigateForward(['trivia-page', { data: JSON.stringify(this.data) }]);
         });
