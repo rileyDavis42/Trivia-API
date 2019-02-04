@@ -7,9 +7,6 @@ import * as _ from 'lodash';
 import { Game } from '../user/game';
 import { UserService } from '../user/user.service';
 import { Questions } from '../model/questions';
-import {forEach} from "@angular-devkit/schematics";
-import {promise} from "selenium-webdriver";
-import {Observable} from "rxjs";
 
 @Component({
     selector: 'app-game-details',
@@ -18,12 +15,12 @@ import {Observable} from "rxjs";
 })
 export class GameDetailsPage implements OnInit {
 
-    users: User[] = [];
     user: User;
+    gamer: User;
+    gamers: User[] = [];
     categories: Object;
     data: Game;
     questionCount = 0;
-    playersSelected = [];
     correctAmount: boolean;
 
     constructor (
@@ -45,14 +42,15 @@ export class GameDetailsPage implements OnInit {
             questionIndex = 0;
             won: string;
         };
+        this.gamer = JSON.parse(sessionStorage.getItem('gamer'));
         this.user = JSON.parse(sessionStorage.getItem('user'));
         this.gameService.getCategories().subscribe(data => {
             this.categories = data['trivia_categories'];
         });
         this.userService.getAllUsers().subscribe(userData => {
-            this.users = [];
+            this.gamers = [];
             for (const key in userData) {
-                this.users.push(userData[key]);
+                this.gamers.push(userData[key]);
             }
             return;
         });

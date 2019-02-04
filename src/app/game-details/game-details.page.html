@@ -19,10 +19,12 @@
                     Select Players:
                 </ion-label>
                 <ion-select multiple="true" [(ngModel)]="data.players" *ngIf="data.numOfPlayers"
-                            (ionChange)="checkPlayers()" placeholder="Don't select yourself!">
-                    <ion-select-option *ngFor="let user of users" value="{{user['id']}}">
-                        {{user['name']}}
-                    </ion-select-option>
+                            (ionChange)="checkPlayers()" placeholder="Select Players">
+                    <ng-container *ngFor="let gamer of gamers">
+                        <ion-select-option *ngIf="gamer.id !== user.id" value="{{gamer['id']}}">
+                            {{gamer['name']}}
+                        </ion-select-option>
+                    </ng-container>
                 </ion-select>
             </ion-item>
 
