@@ -2,10 +2,15 @@
 
 <ion-content padding>
     <ion-spinner *ngIf="!isLoaded"></ion-spinner>
-    <ion-card>
+    <ion-card class="players">
         <ion-card-header>Players</ion-card-header>
         <ion-card-content>
             <div *ngFor="let player of playerNames">{{player}}</div>
+        </ion-card-content>
+    </ion-card>
+    <ion-card class="numQuestions">
+        <ion-card-content *ngIf="!isAnswered">
+            Question # {{ count + 1 }} of {{ questions.length }}
         </ion-card-content>
     </ion-card>
 
@@ -44,11 +49,7 @@
                 <div></div>
             </ion-card-content>
         </ion-card>
-        <ion-card>
-            <ion-card-content *ngIf="!isAnswered">
-                Question # {{ count + 1 }} of {{ questions.length }}
-            </ion-card-content>
-        </ion-card>
+
     <!--<ion-card>-->
         <!--<ion-card-header>Game Stats</ion-card-header>-->
       <!--<ion-card-content>-->

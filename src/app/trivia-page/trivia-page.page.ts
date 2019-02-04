@@ -36,6 +36,10 @@ export class TriviaPagePage implements OnInit {
     askedQuestions: Array<boolean>;
     temp: number = 0;
     score: number = 0;
+    player1Score: number = 0;
+    player2Score: number = 0;
+    player3Score: number = 0;
+    playerScoreArray: Array<number> = [];
 
     questionAnim = 'default';
 
@@ -57,11 +61,8 @@ export class TriviaPagePage implements OnInit {
         this.askQuestion();
         this.getPlayerNames();
         this.getActivePlayer();
-<<<<<<< HEAD
-
-=======
+        this.getScoreArray();
         this.isLoaded = true;
->>>>>>> c862bacd37a83d5dcd97dcf53cb31246428710b6
     }
 
     goBack() {
@@ -106,6 +107,7 @@ export class TriviaPagePage implements OnInit {
         this.questionAnim = 'incorrect';
         if (correct) {
             this.questionAnim = 'correct';
+            this.getScore();
         }
         this.answerQuestion( this.count, correct );
         this.count++;
@@ -150,23 +152,38 @@ export class TriviaPagePage implements OnInit {
 
     getActivePlayer() {
         const numPlayers = this.players.length;
-        let temp = 0;
-        temp = this.count % numPlayers;
-        this.activePlayer = this.players[temp];
+        this.temp = 0;
+        this.temp = this.count % numPlayers;
+        this.activePlayer = this.players[this.temp];
         console.log(this.activePlayer);
-
+        }
+    getScore(){
+        if(this.temp === 0){
+            this.player1Score++;
+        }
+        if(this.temp === 1){
+            this.player2Score++;
+        }
+        if(this.temp === 2) {
+            this.player3Score++;
+        }
+        this.getScoreArray();
+        console.log('score ' + this.playerScoreArray);
+    }
+    getScoreArray(){
+        this.playerScoreArray = [];
+        if(this.players.length === 1) {
+            this.playerScoreArray.push(this.player1Score);
+        }
+        if(this.players.length === 2) {
+            this.playerScoreArray.push(this.player1Score);
+            this.playerScoreArray.push(this.player2Score);
+        }
+        if(this.players.length === 3) {
+            this.playerScoreArray.push(this.player1Score);
+            this.playerScoreArray.push(this.player2Score);
+            this.playerScoreArray.push(this.player3Score);
         }
     }
-    // getScore(){
-    //     for(let i = 0; i < this.players.length; i++) {
-    //         let score = 0;
-    //         for(let j = 0; j < this.questions.length; j++) {
-    //             if ((this.questions[j].playerId === this.players[this.temp]) && (this.right === true)) {
-    //                 score++;
-    //             }
-    //         return score;
-    //         }
-    //     }
-    // }
 
 }
