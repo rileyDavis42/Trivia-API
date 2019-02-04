@@ -18,12 +18,31 @@
 }
 
 ion-content {
-  --background: #C90090;
+  --background: #FFA500;
 }
 
 #content {
   transition: all 200ms;
   transition-property: background-color, height;
+}
+
+.player0 {
+  --background: #FFA500;
+  color: $orange;
+}
+
+.player1 {
+  --background: #0054FF;
+  color: $blue;
+}
+
+.player2 {
+  --background: #C90090;
+  color: $purple;
+}
+
+.info {
+  --background: #fff;
 }
 
 .default {
@@ -48,6 +67,7 @@ ion-content {
   background: #fff;
   font-family: 'Poppins', sans-serif;
 }
+
 .answerRight{
   font-family: 'Poppins', sans-serif;
   background: lawngreen;
@@ -56,6 +76,7 @@ ion-content {
   font-size: 20px;
   color: black;
 }
+
 .answerWrong{
   font-family: 'Poppins', sans-serif;
   background: lightpink;
@@ -64,6 +85,7 @@ ion-content {
   font-size: 20px;
   color: black;
 }
+
 .result{
   font-size: 25px;
   font-weight: bold;

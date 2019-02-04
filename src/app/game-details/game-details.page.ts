@@ -15,12 +15,13 @@ import { Questions } from '../model/questions';
 })
 export class GameDetailsPage implements OnInit {
 
-    users: User[] = [];
     user: User;
+    gamer: User;
+    gamers: User[] = [];
     categories: Object;
     data: Game;
     questionCount = 0;
-    playersSelected = [];
+    correctAmount: boolean;
 
     constructor (
         private route: ActivatedRoute,
@@ -41,30 +42,29 @@ export class GameDetailsPage implements OnInit {
             questionIndex = 0;
             won: string;
         };
+        this.gamer = JSON.parse(sessionStorage.getItem('gamer'));
         this.user = JSON.parse(sessionStorage.getItem('user'));
         this.gameService.getCategories().subscribe(data => {
             this.categories = data['trivia_categories'];
         });
         this.userService.getAllUsers().subscribe(userData => {
-            this.users = [];
+            this.gamers = [];
             for (const key in userData) {
-                this.users.push(userData[key]);
+                this.gamers.push(userData[key]);
             }
             return;
         });
     };
 
-    checkPlayers() {
-        this.playersSelected = [];
-        this.playersSelected.push(this.data.players);
-        console.log(this.playersSelected.length);
-        console.log(this.data.numOfPlayers - 2);
-        if (this.playersSelected.length < (this.data.numOfPlayers - 2)) {
+    checkPlayers(){
+        console.log(this.data.players);
+        if ((this.data.players.length + 1) < this.data.numOfPlayers) {
             alert('Not enough players selected');
-        } else if (this.playersSelected.length > (this.data.numOfPlayers - 2)) {
+        } else if((this.data.players.length + 1) > this.data.numOfPlayers) {
             alert('Too many players selected');
         } else {
-            return;
+            return this.correctAmount = true;
+
         }
     }
 
