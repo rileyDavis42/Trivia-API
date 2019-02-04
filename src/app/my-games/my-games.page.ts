@@ -42,20 +42,26 @@ export class MyGamesPage implements OnInit {
         this.userService.getGames().subscribe(games => {
             this.my_games = [];
             const keys = Object.keys(games);
+
             // Loops through all of the games
             for (let i = 0; i < keys.length; i++) {
                 const game = games[keys[i]];
-                // Loops through all the players in the game
-                for (let j = 0; j < game['players'].length; j++ ) {
-                    if ( game['players'][j] === this.user['id'] ) {
-                        this.userService.getPlayerData(game['players'][j]).subscribe(data => {
-                            game['players'][j] = data['name'];
-                        });
-                        this.my_games.push(game);
-                    } else {
-                        this.userService.getPlayerData(game['players'][j]).subscribe(data => {
-                            game['players'][j] = data['name'];
-                        });
+                game['gameID'] = keys[i];
+                if (game.questionIndex < game.questions.length) {
+
+                    // Loops through all the players in the game
+                    for (let j = 0; j < game['players'].length; j++) {
+                        game.playerNames = [];
+                        if (game['players'][j] === this.user['id']) {
+                            this.userService.getPlayerData(game['players'][j]).subscribe(data => {
+                                game['playerNames'][j] = data['name'];
+                            });
+                            this.my_games.push(game);
+                        } else {
+                            this.userService.getPlayerData(game['players'][j]).subscribe(data => {
+                                game['playerNames'][j] = data['name'];
+                            });
+                        }
                     }
                 }
             }

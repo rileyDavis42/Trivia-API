@@ -52,13 +52,16 @@ export class TriviaPagePage implements OnInit {
         this.questions = this.data.questions;
         this.user = JSON.parse(sessionStorage.getItem('user'));
         this.count = this.data.questionIndex;
+        this.players = this.data.players;
         this.getAnswers();
         this.askQuestion();
-        this.isLoaded = true;
-        this.players = this.data.players;
         this.getPlayerNames();
         this.getActivePlayer();
+<<<<<<< HEAD
 
+=======
+        this.isLoaded = true;
+>>>>>>> c862bacd37a83d5dcd97dcf53cb31246428710b6
     }
 
     goBack() {
@@ -69,7 +72,7 @@ export class TriviaPagePage implements OnInit {
 
     // Sets the currently active question
     askQuestion() {
-        //this.count++;
+        // this.count++;
         this.activeQuestion = this.strParse(this.questions[this.count]['question']);
     }
 
@@ -132,26 +135,25 @@ export class TriviaPagePage implements OnInit {
         this.isAnswered = false;
         this.router.navigate(['game-results', { game: JSON.stringify(this.data) }]);
     }
-    getPlayerNames(){
+
+    getPlayerNames() {
         let playerName: string;
-        for(let i = 0; i< this.players.length; i++){
-           this.userService.getPlayerData(this.players[i]).subscribe(data => {
-               playerName = data['name'];
+        for (let i = 0; i < this.players.length; i++) {
+            this.userService.getPlayerData(this.players[i]).subscribe(data => {
+                playerName = data['name'];
                 this.playerNames.push(playerName);
-        });
+            });
 
         }
         return this.playerNames;
     }
-    getActivePlayer(){
-        let numPlayers = this.players.length;
-        this.temp = this.count % numPlayers;
-        this.activePlayer = this.players[this.temp];
+
+    getActivePlayer() {
+        const numPlayers = this.players.length;
+        let temp = 0;
+        temp = this.count % numPlayers;
+        this.activePlayer = this.players[temp];
         console.log(this.activePlayer);
-    }
-    getPlayerScore() {
-        if(this.right === true)
-        {
 
         }
     }
