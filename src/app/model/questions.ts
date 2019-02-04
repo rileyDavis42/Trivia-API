@@ -5,4 +5,5 @@ export interface Questions {
     question: string;
     pAnswers: Array<object>;
     correct: boolean;
+    playerId: string;
 }
