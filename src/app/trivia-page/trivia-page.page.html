@@ -2,11 +2,7 @@
 
 <ion-content padding class="player{{temp}} hydrated">
     <ion-spinner *ngIf="!isLoaded"></ion-spinner>
-<<<<<<< HEAD
-    <ion-card class="players">
-=======
     <ion-card *ngIf="isLoaded" class="info">
->>>>>>> 8bd5e48e5e59c29c0ffb42222587ddc24b3023a1
         <ion-card-header>Players</ion-card-header>
         <ion-card-content>
             <div *ngFor="let player of playerNames; let i = index" class="player{{i}}">
@@ -56,10 +52,6 @@
                 <div></div>
             </ion-card-content>
         </ion-card>
-<<<<<<< HEAD
-
-=======
-gi
     <ion-card *ngIf="players[temp]['id'] !== user['id'] && isLoaded">
         <h1>It's {{ playerNames[temp] }}'s turn!</h1>
     </ion-card>
@@ -69,7 +61,6 @@ gi
             Question # {{ count + 1 }} of {{ questions.length }}
         </ion-card-content>
     </ion-card>
->>>>>>> 8bd5e48e5e59c29c0ffb42222587ddc24b3023a1
     <!--<ion-card>-->
         <!--<ion-card-header>Game Stats</ion-card-header>-->
       <!--<ion-card-content>-->

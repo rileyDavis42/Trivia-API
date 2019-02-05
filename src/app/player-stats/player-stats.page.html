@@ -1,15 +1,20 @@
 <app-header></app-header>
 
-<ion-content padding>
+<ion-content padding *ngIf="!isLoaded">
+    <ion-spinner></ion-spinner>
+</ion-content>
+
+<ion-content padding *ngIf="isLoaded">
     <mat-card id="gamesCard">
-        <p>Games played: </p>
-        <p>Games won: </p>
-        <p>Games lost: </p>
+        <p>Games played: {{ my_games.length }}</p>
+        <p>Games won: {{ won_games.length }}</p>
+        <p>Games lost: {{ lost_games.length }}</p>
+        <p>Ongoing games: {{ my_games.length - won_games.length - lost_games.length }}</p>
     </mat-card>
     <mat-card id="questionsCard">
-        <p>Questions answered: </p>
-        <p>Questions answered correctly: </p>
-        <p>Questions answered incorrectly: </p>
+        <p>Questions answered: {{ questionsAnswered.length }}</p>
+        <p>Questions answered correctly: {{ correctAnswers.length }}</p>
+        <p>Questions answered incorrectly: {{ incorrectAnswers.length }}</p>
     </mat-card>
     <mat-card id="categoryCard">
         <p>Best Category: </p>
