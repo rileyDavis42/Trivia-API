@@ -6,24 +6,28 @@
         <ion-card-header>Players</ion-card-header>
         <ion-card-content>
             <div *ngFor="let player of playerNames; let i = index" class="player{{i}}">
-                <div *ngIf="temp === i" style="font-size: 25px; font-weight: bold">{{i + 1}}.{{ player }}</div>
-                <p *ngIf="temp !== i">{{i + 1}}.{{player }}</p>
+                <div *ngIf="temp === i" style="font-size: 25px; font-weight: bold">{{i + 1}}.{{ player }}<div> Score: {{ playerScoreArray[i]}}</div></div>
+                <p *ngIf="temp !== i">{{i + 1}}.{{player }}</p><div> Score: {{ playerScoreArray[i]}}</div>
             </div>
         </ion-card-content>
     </ion-card>
+
     <ion-card class="numQuestions">
-        <ion-card-content *ngIf="!isAnswered">
+        <!--<ion-card id="content" class="{{ questionAnim }} sc-ion-card-md-h sc-ion-card-md-s hydrated">-->
+        <ion-card-content *ngIf="!isAnswered && !gameEnded">
             Question # {{ count + 1 }} of {{ questions.length }}
         </ion-card-content>
     </ion-card>
 
-    <ion-card *ngIf="players[temp]['id'] === user['id'] && isLoaded " id="content" class="{{ questionAnim }} sc-ion-card-md-h sc-ion-card-md-s hydrated">
+        <!--Had to add this back in to see questions-->
+    <ion-card id="content" class="{{ questionAnim }} sc-ion-card-md-h sc-ion-card-md-s hydrated">
+
+        <!--I had to uncomment this to see questions and add above lie back in-->
+    <!--<ion-card *ngIf="players[temp]['id'] === user['id'] && isLoaded " id="content" class="{{ questionAnim }} sc-ion-card-md-h sc-ion-card-md-s hydrated">-->
         <ion-card-header>
             <h4>{{ data.category }} - {{ data.difficulty }}</h4>
         </ion-card-header>
             <ion-card-content>
-                <!--<div>{{ activePlayer }}</div>-->
-
                 <ion-list>
                     <ion-radio-group #answerValue>
 
@@ -41,7 +45,9 @@
                     </ion-radio-group>
                 </ion-list>
 
-                <ion-card class="answerRight" *ngIf="isAnswered && right"><div class="result">Correct!!</div></ion-card>
+                <ion-card class="answerRight" *ngIf="isAnswered && right">
+                    <div class="result">Correct!!</div>
+                </ion-card>
                 <ion-card class="answerWrong" *ngIf="isAnswered && !right">
                     <div class="result">Incorrect!</div>
                     <div>The correct answer is....{{correctAnswer}}</div>
@@ -49,9 +55,8 @@
 
                 <ion-button *ngIf="isAnswered && !gameEnded" (click)="startRound(); answerValue.value = ''">Next Question</ion-button>
                 <ion-button *ngIf="isAnswered && gameEnded" (click)="goToStatsPage(this.user)">See Player Results  </ion-button>
-                <div></div>
             </ion-card-content>
-        </ion-card>
+    </ion-card>
     <ion-card *ngIf="players[temp]['id'] !== user['id'] && isLoaded">
         <h1>It's {{ playerNames[temp] }}'s turn!</h1>
     </ion-card>

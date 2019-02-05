@@ -69,6 +69,8 @@ export class GameDetailsPage implements OnInit {
     }
 
     startGame() {
+        // @ts-ignore
+        this.data.questions = (this.data.questions * (this.data.players.length +1));
         this.gameService.getQuestions(this.data).subscribe(data => {
             this.data.questions = data['results'];
             this.data.players.push(this.user.id);
@@ -94,5 +96,4 @@ export class GameDetailsPage implements OnInit {
             });
         }
     }
-
 }
