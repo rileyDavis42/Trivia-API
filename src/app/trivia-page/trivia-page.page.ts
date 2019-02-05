@@ -82,9 +82,11 @@ export class TriviaPagePage implements OnInit {
         const findQuotes = RegExp('&#039;', 'g');
         const findQuotes2 = RegExp('&quot;', 'g');
         const findAnd = RegExp('&amp;', 'g');
+        const findE = RegExp('&eacute;', 'g');
         txt = txt.replace( findQuotes, '\'');
         txt = txt.replace( findQuotes2, '\'');
         txt = txt.replace( findAnd, '&');
+        txt = txt.replace( findE, 'é' );
         return txt;
     }
 
