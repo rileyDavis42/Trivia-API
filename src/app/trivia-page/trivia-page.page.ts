@@ -185,5 +185,16 @@ export class TriviaPagePage implements OnInit {
             this.playerScoreArray.push(this.player3Score);
         }
     }
+    getWinner(){
+        if((this.players.length > 1) && (this.player1Score > this.player2Score && this.player3Score)){
+            return this.players[0];
+        }
+        if((this.players.length > 1) && (this.player2Score > this.player1Score && this.player3Score)){
+            return this.players[1];
+        }
+        if((this.players.length > 1) && (this.player3Score > this.player1Score && this.player2Score)){
+            return this.players[2];
+        }
+    }
 
 }
