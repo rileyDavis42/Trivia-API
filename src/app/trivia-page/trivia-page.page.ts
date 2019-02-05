@@ -157,42 +157,42 @@ export class TriviaPagePage implements OnInit {
         this.activePlayer = this.players[this.temp];
         console.log(this.activePlayer);
         }
-    getScore(){
-        if(this.temp === 0){
+    getScore() {
+        if (this.temp === 0) {
             this.player1Score++;
         }
-        if(this.temp === 1){
+        if (this.temp === 1) {
             this.player2Score++;
         }
-        if(this.temp === 2) {
+        if (this.temp === 2) {
             this.player3Score++;
         }
         this.getScoreArray();
         console.log('score ' + this.playerScoreArray);
     }
-    getScoreArray(){
+    getScoreArray() {
         this.playerScoreArray = [];
-        if(this.players.length === 1) {
+        if (this.players.length === 1) {
             this.playerScoreArray.push(this.player1Score);
         }
-        if(this.players.length === 2) {
+        if (this.players.length === 2) {
             this.playerScoreArray.push(this.player1Score);
             this.playerScoreArray.push(this.player2Score);
         }
-        if(this.players.length === 3) {
+        if (this.players.length === 3) {
             this.playerScoreArray.push(this.player1Score);
             this.playerScoreArray.push(this.player2Score);
             this.playerScoreArray.push(this.player3Score);
         }
     }
-    getWinner(){
-        if((this.players.length > 1) && (this.player1Score > this.player2Score && this.player3Score)){
+    getWinner() {
+        if ((this.players.length > 1) && (this.player1Score > this.player2Score && this.player3Score)){
             return this.players[0];
         }
-        if((this.players.length > 1) && (this.player2Score > this.player1Score && this.player3Score)){
+        if ((this.players.length > 1) && (this.player2Score > this.player1Score && this.player3Score)){
             return this.players[1];
         }
-        if((this.players.length > 1) && (this.player3Score > this.player1Score && this.player2Score)){
+        if ((this.players.length > 1) && (this.player3Score > this.player1Score && this.player2Score)){
             return this.players[2];
         }
     }

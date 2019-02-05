@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../user/user';
 import { UserService } from '../user/user.service';
 import { Game } from '../user/game';
-import { Questions } from '../model/questions';
 
 @Component({
     selector: 'app-player-stats',
@@ -18,6 +17,10 @@ export class PlayerStatsPage implements OnInit {
     questionsAnswered: Object[] = [];
     correctAnswers: Object[] = [];
     incorrectAnswers: Object[] = [];
+
+    categories: Object = {};
+    bestCategory = 'N/A';
+    worstCategory = 'N/A';
     isLoaded = false;
 
     constructor( private userService: UserService ) {
@@ -56,6 +59,12 @@ export class PlayerStatsPage implements OnInit {
                     }
                 }
 
+                // This if statement will check and see if the categories array has a definition for this games category. If it doesn't, it
+                // will create one with a value of zero
+                if (typeof(this.categories[game['category']]) === 'undefined') {
+                    this.categories[game['category']] = 0;
+                }
+
                 const questions = game['questions'];
                 // This for loop will iterate through each of the questions in the game to identify if it belongs to the logged in user
                 // and if whether it was correct or incorrect.
@@ -63,26 +72,38 @@ export class PlayerStatsPage implements OnInit {
                     if ( typeof(questions[j]['correct']) !== 'undefined' && questions[j]['playerID'] === this.user.id) {
                         this.questionsAnswered.push(questions[j]);
                         if ( questions[j]['correct'] ) {
+                            this.categories[game['category']] += 1;
                             this.correctAnswers.push(questions[j]);
                         } else if ( !questions[j]['correct'] ) {
+                            this.categories[game['category']] -= 1;
                             this.incorrectAnswers.push(questions[j]);
                         }
                     }
                 }
             }
-            this.calculateBestCategory();
+
+            let categories = Object.keys(this.categories);
+
+            // Calculates the best category...
+            let maxIndex = 0;
+            for ( let i = 1; i < categories.length; i++) {
+                if ( this.categories[categories[i]] > this.categories[categories[maxIndex]] ) {
+                    maxIndex = i;
+                }
+            }
+            this.bestCategory = categories[maxIndex];
+
+            // Calculates the worst category...
+            let minIndex = 0;
+            for ( let i = 1; i < categories.length; i++) {
+                if ( this.categories[categories[i]] < this.categories[categories[minIndex]] ) {
+                    minIndex = i;
+                }
+            }
+            this.worstCategory = categories[minIndex];
+
             this.isLoaded = true;
         });
-    }
-
-    calculateBestCategory () {
-        const categories = [];
-        console.log(this.correctAnswers);
-        for ( let i = 0; i < this.correctAnswers.length; i++ ) {
-            const question = this.correctAnswers[i];
-            categories.push(question['category']);
-        }
-        console.log(categories);
     }
 
 }
