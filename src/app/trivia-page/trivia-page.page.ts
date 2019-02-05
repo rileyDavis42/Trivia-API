@@ -18,7 +18,7 @@ export class TriviaPagePage implements OnInit {
 
     isLoaded = false;
 
-    activePlayer: string;
+    activePlayer: Object;
     questions: Object[] = [];
     activeUser: string;
     activeQuestion: string;
@@ -30,16 +30,11 @@ export class TriviaPagePage implements OnInit {
     isAnswered = false;
     right: boolean;
     player: any;
-    players = [] = [];
-    playerNames: Array<string> = [];
+    players: Object[] = [];
     winner: any;
     askedQuestions: Array<boolean>;
     temp: number = 0;
     score: number = 0;
-    player1Score: number = 0;
-    player2Score: number = 0;
-    player3Score: number = 0;
-    playerScoreArray: Array<number> = [];
 
     questionAnim = 'default';
 
@@ -57,11 +52,18 @@ export class TriviaPagePage implements OnInit {
         this.user = JSON.parse(sessionStorage.getItem('user'));
         this.count = this.data.questionIndex;
         this.players = this.data.players;
+
+        for (let i = 0; i < this.players.length; i++) {
+            this.userService.getPlayerData(this.players[i]).subscribe(data => {
+                this.players[i] = data;
+                this.players[i]['score'] = 0;
+            });
+
+        }
+
         this.getAnswers();
         this.askQuestion();
-        this.getPlayerNames();
         this.getActivePlayer();
-        this.getScoreArray();
         this.isLoaded = true;
     }
 
@@ -81,10 +83,12 @@ export class TriviaPagePage implements OnInit {
     strParse(txt: string): string {
         const findQuotes = RegExp('&#039;', 'g');
         const findQuotes2 = RegExp('&quot;', 'g');
+        const findQuotes3 = RegExp('&rsquo;', 'g');
         const findAnd = RegExp('&amp;', 'g');
         const findE = RegExp('&eacute;', 'g');
         txt = txt.replace( findQuotes, '\'');
         txt = txt.replace( findQuotes2, '\'');
+        txt = txt.replace( findQuotes3, '\'');
         txt = txt.replace( findAnd, '&');
         txt = txt.replace( findE, 'é' );
         return txt;
@@ -140,63 +144,20 @@ export class TriviaPagePage implements OnInit {
         this.router.navigate(['game-results', { game: JSON.stringify(this.data) }]);
     }
 
-    getPlayerNames() {
-        let playerName: string;
-        for (let i = 0; i < this.players.length; i++) {
-            this.userService.getPlayerData(this.players[i]).subscribe(data => {
-                playerName = data['name'];
-                this.playerNames.push(playerName);
-            });
-
-        }
-        return this.playerNames;
-    }
-
     getActivePlayer() {
         const numPlayers = this.players.length;
         this.temp = 0;
         this.temp = this.count % numPlayers;
         this.activePlayer = this.players[this.temp];
-        console.log(this.activePlayer);
-        }
+    }
+
     getScore() {
-        if (this.temp === 0) {
-            this.player1Score++;
-        }
-        if (this.temp === 1) {
-            this.player2Score++;
-        }
-        if (this.temp === 2) {
-            this.player3Score++;
-        }
-        this.getScoreArray();
-        console.log('score ' + this.playerScoreArray);
+        console.log(this.players[this.temp]);
+        this.players[this.temp]['score']++;
     }
-    getScoreArray() {
-        this.playerScoreArray = [];
-        if (this.players.length === 1) {
-            this.playerScoreArray.push(this.player1Score);
-        }
-        if (this.players.length === 2) {
-            this.playerScoreArray.push(this.player1Score);
-            this.playerScoreArray.push(this.player2Score);
-        }
-        if (this.players.length === 3) {
-            this.playerScoreArray.push(this.player1Score);
-            this.playerScoreArray.push(this.player2Score);
-            this.playerScoreArray.push(this.player3Score);
-        }
-    }
+
     getWinner() {
-        if ((this.players.length > 1) && (this.player1Score > this.player2Score && this.player3Score)){
-            return this.players[0];
-        }
-        if ((this.players.length > 1) && (this.player2Score > this.player1Score && this.player3Score)){
-            return this.players[1];
-        }
-        if ((this.players.length > 1) && (this.player3Score > this.player1Score && this.player2Score)){
-            return this.players[2];
-        }
+
     }
 
 }

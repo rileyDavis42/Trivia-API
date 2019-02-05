@@ -5,9 +5,9 @@
     <ion-card *ngIf="isLoaded" class="info">
         <ion-card-header>Players</ion-card-header>
         <ion-card-content>
-            <div *ngFor="let player of playerNames; let i = index" class="player{{i}}">
-                <div *ngIf="temp === i" style="font-size: 25px; font-weight: bold">{{i + 1}}.{{ player }}<div> Score: {{ playerScoreArray[i]}}</div></div>
-                <p *ngIf="temp !== i">{{i + 1}}.{{player }}</p><div> Score: {{ playerScoreArray[i]}}</div>
+            <div *ngFor="let player of players; let i = index" class="player{{i}}">
+                <div *ngIf="temp === i" style="font-size: 25px; font-weight: bold">{{i + 1}}.{{ player['name'] }}<div> Score: {{ player['score'] }}</div></div>
+                <p *ngIf="temp !== i">{{i + 1}}.{{ player['name'] }}</p><div> Score: {{ player['score'] }}</div>
             </div>
         </ion-card-content>
     </ion-card>
@@ -58,7 +58,7 @@
             </ion-card-content>
     </ion-card>
     <ion-card *ngIf="players[temp]['id'] !== user['id'] && isLoaded">
-        <h1>It's {{ playerNames[temp] }}'s turn!</h1>
+        <h1>It's {{ players[temp]['name'] }}'s turn!</h1>
     </ion-card>
 
     <ion-card class="info" *ngIf="isLoaded">
