@@ -31,7 +31,7 @@ export class TriviaPagePage implements OnInit {
     right: boolean;
     player: any;
     players: Object[] = [];
-    winner: any;
+    winners: Object[] = [];
     askedQuestions: Array<boolean>;
     temp: number = 0;
     score: number = 0;
@@ -135,7 +135,7 @@ export class TriviaPagePage implements OnInit {
         this.askQuestion();
         this.getAnswers();
         this.getActivePlayer();
-        this.getWinner();
+        this.winners = this.getWinner();
     }
 
     // Goes to the stats page upon finishing the game...
@@ -157,12 +157,18 @@ export class TriviaPagePage implements OnInit {
     }
 
     getWinner() {
+        let winners: Object[] = [];
         let maxIndex = 0;
+        winners.push(this.players[maxIndex]);
         for (let i = 1; i < this.players.length; i++) {
             if (this.players[i]['score'] > this.players[maxIndex]['score']) {
                 maxIndex = i;
+                winners = [];
+                winners.push(this.players[maxIndex]);
+            } else if (this.players[i]['score'] === this.players[maxIndex]['score']) {
+                winners.push(this.players[i]);
             }
         }
-        return this.players[maxIndex];
+        return winners;
     }
 }

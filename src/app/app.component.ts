@@ -1,12 +1,13 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
-import {MenuController, Platform} from '@ionic/angular';
-import {SplashScreen} from '@ionic-native/splash-screen/ngx';
-import {StatusBar} from '@ionic-native/status-bar/ngx';
+import { Platform } from '@ionic/angular';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 @Component({
     selector: 'app-root',
-    templateUrl: 'app.component.html'
+    templateUrl: 'app.component.html',
+    styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
     public appPages = [
@@ -16,24 +17,19 @@ export class AppComponent {
             icon: 'home'
         },
         {
-            title: 'Game Details',
+            title: 'Start a Game',
             url: '/game-details',
             icon: 'ribbon'
-        },
-        {
-            title: 'Trivia Page',
-            url: '/trivia-page',
-            icon: 'help'
-        },
-        {
-            title: 'Player Stats',
-            url: '/player-stats',
-            icon: 'stats'
         },
         {
             title: 'Ongoing Games',
             url: '/my-games',
             icon: 'save'
+        },
+        {
+            title: 'Player Stats',
+            url: '/player-stats',
+            icon: 'stats'
         }
     ];
 
