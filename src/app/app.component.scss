@@ -1,0 +1,19 @@
+#menu {
+  ion-content {
+    --background: #2C3E50;
+  }
+  ion-title {
+    font-family: 'Shrikhand', sans-serif;
+    color: #C90090;
+  }
+  ion-item {
+    --background: #2C3E50;
+    color: #fff;
+    ion-icon {
+      color: #fff;
+    }
+    ion-label {
+      font-family: 'Poppins', sans-serif;
+    }
+  }
+}

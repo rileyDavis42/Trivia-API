@@ -6,8 +6,12 @@
         <ion-card-header>Players</ion-card-header>
         <ion-card-content>
             <div *ngFor="let player of players; let i = index" class="player{{i}}">
-                <div *ngIf="temp === i" style="font-size: 25px; font-weight: bold">{{i + 1}}.{{ player['name'] }}<div> Score: {{ player['score'] }}</div></div>
-                <p *ngIf="temp !== i">{{i + 1}}.{{ player['name'] }}</p><div> Score: {{ player['score'] }}</div>
+                <div *ngIf="temp === i" style="font-size: 25px; font-weight: bold">{{i + 1}}.{{ player['name'] }}</div>
+                <p *ngIf="temp !== i">{{i + 1}}.{{ player['name'] }}</p>
+                <div>
+                    Score: {{ player['score'] }}
+                    <ion-icon name="trophy" *ngIf="winners.length == 1 && winners[0]['id'] === player['id']"></ion-icon>
+                </div>
             </div>
         </ion-card-content>
     </ion-card>
@@ -60,17 +64,4 @@
     <ion-card *ngIf="players[temp]['id'] !== user['id'] && isLoaded">
         <h1>It's {{ players[temp]['name'] }}'s turn!</h1>
     </ion-card>
-
-    <ion-card class="info" *ngIf="isLoaded">
-        <ion-card-content *ngIf="!isAnswered">
-            Question # {{ count + 1 }} of {{ questions.length }}
-        </ion-card-content>
-    </ion-card>
-    <!--<ion-card>-->
-        <!--<ion-card-header>Game Stats</ion-card-header>-->
-      <!--<ion-card-content>-->
-          <!--<ion-list-header>Player in the lead is {{ winner }}</ion-list-header>-->
-          <!--<ion-list *ngFor="player of players"><div>{{player.name}}</div><div>{{player.score}}/{{askedQuesitons}}</div></ion-list>-->
-      <!--</ion-card-content>-->
-    <!--</ion-card>-->
 </ion-content>
