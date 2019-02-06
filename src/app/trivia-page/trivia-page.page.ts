@@ -135,6 +135,7 @@ export class TriviaPagePage implements OnInit {
         this.askQuestion();
         this.getAnswers();
         this.getActivePlayer();
+        this.getWinner();
     }
 
     // Goes to the stats page upon finishing the game...
@@ -152,12 +153,10 @@ export class TriviaPagePage implements OnInit {
     }
 
     getScore() {
-        console.log(this.players[this.temp]);
         this.players[this.temp]['score']++;
     }
 
     getWinner() {
-        console.log(this.players);
         let maxIndex = 0;
         for (let i = 1; i < this.players.length; i++) {
             if (this.players[i]['score'] > this.players[maxIndex]['score']) {
