@@ -69,6 +69,10 @@ export class GameDetailsPage implements OnInit {
     }
 
     startGame() {
+        if(this.data.questions.length < this.questionCount){
+            alert('There are not enough questions in that category. Please pick a lesser number of questions');
+            return
+        }
         // @ts-ignore
         this.data.questions = (this.data.questions * (this.data.players.length +1));
         this.gameService.getQuestions(this.data).subscribe(data => {
@@ -83,6 +87,7 @@ export class GameDetailsPage implements OnInit {
             this.data.gameID = this.userService.startNewGame(this.data);
             this.navCtrl.navigateForward(['trivia-page', { data: JSON.stringify(this.data) }]);
         });
+
     }
 
     updateCategoryName() {
