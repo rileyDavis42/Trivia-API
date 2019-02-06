@@ -55,7 +55,7 @@
             <ion-item *ngIf="data.category && data.difficulty">
                 <ion-label>Questions per Player: </ion-label>
                 <input type="number" max="{{questionCount}}" placeholder="#"
-                       [(ngModel)]="data.questions "/>
+                       [(ngModel)]="data.questions"/>
             </ion-item>
 
             <ion-button *ngIf="data.questions && correctAmount" shape="round" color="primary" (click)="startGame()" slot="end">Start Game</ion-button>
