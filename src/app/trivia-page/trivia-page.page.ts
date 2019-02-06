@@ -163,7 +163,6 @@ export class TriviaPagePage implements OnInit {
                 maxIndex = i;
             }
         }
-        console.log(this.players[maxIndex]);
+        return this.players[maxIndex];
     }
-
 }
