@@ -157,7 +157,13 @@ export class TriviaPagePage implements OnInit {
     }
 
     getWinner() {
-
+        console.log(this.players);
+        let maxIndex = 0;
+        for (let i = 1; i < this.players.length; i++) {
+            if (this.players[i]['score'] > this.players[maxIndex]['score']) {
+                maxIndex = i;
+            }
+        }
+        return this.players[maxIndex];
     }
-
 }
