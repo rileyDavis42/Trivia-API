@@ -54,7 +54,7 @@
 
             <ion-item *ngIf="data.category && data.difficulty">
                 <ion-label>Questions per Player: </ion-label>
-                <input type="number" max="{{questionCount}}" placeholder="#"
+                <input type="number" max="{{questionCount/(data.players.length + 1)}}" placeholder="#"
                        [(ngModel)]="data.questions"/>
             </ion-item>
 
