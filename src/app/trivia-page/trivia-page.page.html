@@ -11,6 +11,10 @@
                 <div>
                     Score: {{ player['score'] }}
                     <ion-icon name="trophy" *ngIf="winners.length == 1 && winners[0]['id'] === player['id']"></ion-icon>
+                    <div *ngFor="let winner of winners; index as index">
+                        <ion-icon name="bowtie" *ngIf="winners.length > 1 && winner['id'] === player['id'] && (winner['score'] != 0)"></ion-icon>
+                    </div>
+
                 </div>
             </div>
         </ion-card-content>
@@ -61,7 +65,7 @@
                 <ion-button *ngIf="isAnswered && gameEnded" (click)="goToStatsPage(this.user); getWinner();">See Player Results  </ion-button>
             </ion-card-content>
     </ion-card>
-    <ion-card *ngIf="players[temp]['id'] !== user['id'] && isLoaded">
-        <h1>It's {{ players[temp]['name'] }}'s turn!</h1>
-    </ion-card>
+    <!--<ion-card *ngIf="players[temp]['id'] !== user['id'] && isLoaded">-->
+        <!--<h1>It's {{ players[temp]['name'] }}'s turn!</h1>-->
+    <!--</ion-card>-->
 </ion-content>

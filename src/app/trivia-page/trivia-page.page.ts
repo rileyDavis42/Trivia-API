@@ -37,6 +37,7 @@ export class TriviaPagePage implements OnInit {
     score: number = 0;
 
     questionAnim = 'default';
+    winner: any;
 
     constructor(
         private route: ActivatedRoute,
@@ -166,6 +167,7 @@ export class TriviaPagePage implements OnInit {
                 winners = [];
                 winners.push(this.players[maxIndex]);
             } else if (this.players[i]['score'] === this.players[maxIndex]['score']) {
+            // } else if (this.players[i]['score'] === this.players[maxIndex]['score'] && (this.players[i]['score'] != 0)) {
                 winners.push(this.players[i]);
             }
         }
