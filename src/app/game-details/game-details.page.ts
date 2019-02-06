@@ -38,7 +38,7 @@ export class GameDetailsPage implements OnInit {
             difficulty: string;
             players: string[] = [];
             numOfPlayers: number;
-            questions: Questions[];
+            questions: any;
             questionIndex = 0;
             won: string;
         };
@@ -69,7 +69,12 @@ export class GameDetailsPage implements OnInit {
     }
 
     startGame() {
-        if(this.data.questions.length < this.questionCount){
+        console.log("this. questions" + this.data.questions);
+        console.log("count" + this.questionCount);
+        console.log("div player " + this.questionCount/(this.data.players.length + 1));
+
+        // @ts-ignore
+        if(this.data.questions > (this.questionCount/this.data.players.length)){
             alert('There are not enough questions in that category. Please pick a lesser number of questions');
             return
         }
