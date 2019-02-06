@@ -1,9 +1,9 @@
 <ion-header>
     <ion-toolbar>
-        <ion-buttons>
-            <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        <ion-title id="appTitle" class="title-ios">Trivia</ion-title>
-        <img slot="end" id="profile_pic" src="{{user.logo}}" alt="">
+        <div id="appTitle">
+            <ion-icon name="menu" onclick="document.getElementById('menu').open()"></ion-icon>
+            Trivia
+            <img slot="end" id="profile_pic" src="{{user.logo}}" alt="">
+        </div>
     </ion-toolbar>
 </ion-header>
