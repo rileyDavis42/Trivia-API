@@ -3,9 +3,9 @@
 <ion-content padding class="player{{temp}} hydrated">
     <ion-spinner *ngIf="!isLoaded"></ion-spinner>
     <ion-card *ngIf="isLoaded" class="info">
-        <ion-card-header>Players</ion-card-header>
-        <ion-card-content>
-            <div *ngFor="let player of players; let i = index" class="player{{i}}">
+        <ion-card-header class="playerHeader">Players</ion-card-header>
+        <ion-card-content class="playerContainer">
+            <div class="inP" *ngFor="let player of players; let i = index" class="player{{i}}">
                 <div *ngIf="temp === i" style="font-size: 25px; font-weight: bold">{{i + 1}}.{{ player['name'] }}</div>
                 <p *ngIf="temp !== i">{{i + 1}}.{{ player['name'] }}</p>
                 <div>
