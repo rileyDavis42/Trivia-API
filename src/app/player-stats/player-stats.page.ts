@@ -29,6 +29,9 @@ export class PlayerStatsPage implements OnInit {
     ngOnInit() {
         this.user = JSON.parse(sessionStorage.getItem('user'));
         this.userService.getGames().subscribe(games => {
+            if(games === null) {
+                return;
+            }
 
             // I included the following lines of code to reset the stats and prevent stacking.
             this.my_games = [];

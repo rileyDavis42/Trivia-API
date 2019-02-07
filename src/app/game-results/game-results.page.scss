@@ -1,3 +1,121 @@
-ion-title {
-  font-family: Shrikhand, 'sans-serif';
+@import "../../global.scss";
+
+#content-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#confetti {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  position: absolute;
+}
+
+.won-true {
+  --background: #00DA00;
+}
+
+.won-false {
+  --background: #FF0000;
+}
+
+#category {
+  display: block;
+  margin: auto;
+  text-align: center;
+  font-family: Shrikhand, sans-serif;
+  background-color: #fff;
+  padding: 10px;
+}
+
+#results {
+  display: block;
+  position: absolute;
+  background-color: #fff;
+  border: 3px solid #2C3E50;
+  border-radius: 50px;
+  overflow: scroll;
+
+  top: 0; right: 0; bottom: 0; left: 0;
+  margin: 25% auto;
+  padding: 10px;
+
+  width: 85%;
+  height: 70%;
+  z-index: 2;
+
+  // Refers to the header, 'Score:'
+  #score {
+    text-align: center;
+    font-family: 'Shrikhand', sans-serif;
+    color: #FF1493;
+  }
+  // Refers to the scoring results
+  .score {
+    border: 3px solid #FF1493;
+    border-radius: 20px;
+    margin: 10px auto;
+    width: 50px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+  }
+
+}
+
+.question {
+  padding: 5px;
+  margin: 5px;
+  border-radius: 10px;
+  font-family: 'Poppins', sans-serif;
+  .title {
+    padding: 5px;
+    color: #fff;
+    font-weight: bold;
+    margin: 0;
+  }
+  .answers {
+    .correct_answer, .incorrect_answer {
+      padding: 5px;
+      margin: 5px;
+    }
+
+    .correct_answer {
+      background-color: lightgreen;
+    }
+
+    .incorrect_answer {
+      background-color: pink;
+    }
+  }
+}
+
+.correct-true {
+  background-color: $green;
+}
+.correct-false {
+  background-color: $red;
+}
+
+#play_again {
+
+  position: absolute;
+  width: 150px;
+  top: 90%; left: 0; right: 0;
+
+  padding: 10px;
+  margin: auto;
+
+  color: #fff;
+  background-color: #3880ff;
+
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+
+  border: 1px solid #fff;
+  border-radius: 10px;
 }

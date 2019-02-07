@@ -5,6 +5,7 @@ import { GameService } from '../user/game.service';
 import { User } from '../user/user';
 import { UserService } from '../user/user.service';
 import { Game } from '../user/game';
+import 'confetti-js';
 
 @Component({
     selector: 'app-trivia-page',
@@ -36,6 +37,7 @@ export class TriviaPagePage implements OnInit {
     temp: number = 0;
     score: number = 0;
     round: number = 1;
+    confetti: ConfettiGenerator;
 
     questionAnim = 'default';
     winner: any;
@@ -54,6 +56,7 @@ export class TriviaPagePage implements OnInit {
         this.user = JSON.parse(sessionStorage.getItem('user'));
         this.count = this.data.questionIndex;
         this.players = this.data.players;
+        this.confetti = new ConfettiGenerator({target: 'confetti'});
 
         for (let i = 0; i < this.players.length; i++) {
             this.userService.getPlayerData(this.players[i]).subscribe(data => {
@@ -83,17 +86,7 @@ export class TriviaPagePage implements OnInit {
 
     // Used by askQuestion() to replace html symbols with their proper symbol
     strParse(txt: string): string {
-        const findQuotes = RegExp('&#039;', 'g');
-        const findQuotes2 = RegExp('&quot;', 'g');
-        const findQuotes3 = RegExp('&rsquo;', 'g');
-        const findAnd = RegExp('&amp;', 'g');
-        const findE = RegExp('&eacute;', 'g');
-        txt = txt.replace( findQuotes, '\'');
-        txt = txt.replace( findQuotes2, '\'');
-        txt = txt.replace( findQuotes3, '\'');
-        txt = txt.replace( findAnd, '&');
-        txt = txt.replace( findE, 'é' );
-        return txt;
+        return this.gameService.strParse(txt);
     }
 
     // Gets the answers from a certain question and sets them to being either correct or incorrect
@@ -130,6 +123,7 @@ export class TriviaPagePage implements OnInit {
 
     // Rotates to the next question
     startRound() {
+        this.confetti.clear();
         this.isAnswered = false;
         this.questionAnim = 'default';
         this.answer = null;
@@ -146,7 +140,7 @@ export class TriviaPagePage implements OnInit {
     goToStatsPage() {
 
         this.isAnswered = false;
-        this.router.navigate(['game-results', { game: JSON.stringify(this.data) }]);
+        this.router.navigate(['game-results', { game: JSON.stringify(this.data), winners: JSON.stringify(this.getWinner()) }]);
     }
 
     getActivePlayer() {
@@ -157,6 +151,8 @@ export class TriviaPagePage implements OnInit {
     }
 
     getScore() {
+        this.confetti = new ConfettiGenerator({target: 'confetti'});
+        this.confetti.render();
         this.players[this.temp]['score']++;
     }
 
