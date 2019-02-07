@@ -4,20 +4,22 @@
     <ion-spinner></ion-spinner>
 </ion-content>
 
-<ion-content padding *ngIf="isLoaded">
-    <mat-card id="gamesCard">
-        <p>Games played: {{ my_games.length }}</p>
-        <p>Games won: {{ won_games.length }}</p>
-        <p>Games lost: {{ lost_games.length }}</p>
-        <p>Ongoing games: {{ my_games.length - won_games.length - lost_games.length }}</p>
-    </mat-card>
-    <mat-card id="questionsCard">
-        <p>Questions answered: {{ questionsAnswered.length }}</p>
-        <p>Questions answered correctly: {{ correctAnswers.length }}</p>
-        <p>Questions answered incorrectly: {{ incorrectAnswers.length }}</p>
-    </mat-card>
-    <mat-card id="categoryCard">
-        <p>Best Category: {{ bestCategory }}</p>
-        <p>Worst Category: {{ worstCategory }}</p>
-    </mat-card>
+<ion-content *ngIf="isLoaded">
+    <div id="content">
+        <mat-card id="gamesCard">
+            <p>Games played: {{ my_games.length }}</p>
+            <p>Games won: {{ won_games.length }}</p>
+            <p>Games lost: {{ lost_games.length }}</p>
+            <p>Ongoing games: {{ my_games.length - won_games.length - lost_games.length }}</p>
+        </mat-card>
+        <mat-card id="questionsCard">
+            <p>Questions answered: {{ questionsAnswered.length }}</p>
+            <p>Questions answered correctly: {{ correctAnswers.length }}</p>
+            <p>Questions answered incorrectly: {{ incorrectAnswers.length }}</p>
+        </mat-card>
+        <mat-card id="categoryCard">
+            <p>Best Category: {{ bestCategory }}</p>
+            <p>Worst Category: {{ worstCategory }}</p>
+        </mat-card>
+    </div>
 </ion-content>

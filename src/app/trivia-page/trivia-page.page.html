@@ -1,4 +1,5 @@
 <app-header></app-header>
+<script src="../../../node_modules/confetti-js/dist/index.min.js"></script>
 
 <ion-content padding class="player{{temp}} hydrated">
     <ion-spinner *ngIf="!isLoaded"></ion-spinner>
@@ -24,6 +25,7 @@
     </ion-card>
 
         <!--Had to add this back in to see questions-->
+    <canvas id="confetti"></canvas>
     <ion-card id="content" class="{{ questionAnim }} sc-ion-card-md-h sc-ion-card-md-s hydrated">
 
         <!--I had to uncomment this to see questions and add above lie back in-->

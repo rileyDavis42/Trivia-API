@@ -40,6 +40,9 @@ export class MyGamesPage implements OnInit {
         this.isLoaded = false;
         this.my_games = [];
         this.userService.getGames().subscribe(games => {
+            if(games === null) {
+                return;
+            }
             this.my_games = [];
             const keys = Object.keys(games);
 
@@ -47,7 +50,7 @@ export class MyGamesPage implements OnInit {
             for (let i = 0; i < keys.length; i++) {
                 const game = games[keys[i]];
                 game['gameID'] = keys[i];
-                if (game.questionIndex < game.questions.length) {
+                if ( game.questions.length && game.questionIndex < game.questions.length) {
 
                     // Loops through all the players in the game
                     for (let j = 0; j < game['players'].length; j++) {

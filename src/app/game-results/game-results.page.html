@@ -1,6 +1,25 @@
 <app-header></app-header>
 
-<ion-content padding>
-    <h1>{{ game.category }} - {{ game.difficulty }}</h1>
-    <p>Score: {{ score }} / {{ questions.length }}</p>
+<ion-content class="won-{{won}}">
+    <div id="content-container">
+        <canvas id="confetti"></canvas>
+        <h1 id="category">{{ game.category }}</h1>
+        <div id="results">
+            <h3 id="score">Score:</h3>
+            <p class="score">{{ score }} / {{ questions.length }}</p>
+            <p class="score">{{ Math.round((score / questions.length) * 100) }}%</p>
+
+            <div *ngFor="let question of game.questions; let i = index" class="question correct-{{ question.correct }}">
+                <p class="title">Question # {{ i + 1 }} : {{ question['playerName'] }}</p>
+                <div class="title">
+                    {{ gameService.strParse(question.question) }}
+                </div>
+                <div class="answers">
+                    <div class="correct_answer">{{ question['correct_answer'] }}</div>
+                    <div class="incorrect_answer" *ngFor="let answer of question['incorrect_answers']">{{ answer }}</div>
+                </div>
+            </div>
+        </div>
+        <div id="play_again" (click)="playAgain()">{{ (won)? 'Play again!': 'Try again' }}</div>
+    </div>
 </ion-content>
