@@ -7,14 +7,14 @@
                 <ion-label>
                     Number of Players:
                 </ion-label>
-                <ion-select [(ngModel)]="data.numOfPlayers" placeholder="# of Players" interface="popover">
-                    <ion-select-option>1</ion-select-option>
-                    <ion-select-option>2</ion-select-option>
-                    <ion-select-option>3</ion-select-option>
+                <ion-select (ionChange)="onePlayer()" [(ngModel)]="data.numOfPlayers" placeholder="# of Players" interface="popover">
+                    <ion-select-option value="1">1</ion-select-option>
+                    <ion-select-option value="2">2</ion-select-option>
+                    <ion-select-option value="3">3</ion-select-option>
                 </ion-select>
             </ion-item>
 
-            <ion-item>
+            <ion-item *ngIf="showPlayerSelect">
                 <ion-label>
                     Select Players:
                 </ion-label>
