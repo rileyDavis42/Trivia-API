@@ -22,6 +22,7 @@ export class GameDetailsPage implements OnInit {
     data: Game;
     questionCount = 0;
     correctAmount: boolean;
+    private showPlayerSelect: boolean = false;
 
     constructor (
         private route: ActivatedRoute,
@@ -57,7 +58,9 @@ export class GameDetailsPage implements OnInit {
     };
 
     checkPlayers(){
-        console.log(this.data.players);
+        // if(this.data.players.length === 1){
+        //     return this.correctAmount = true;
+        // }
         if ((this.data.players.length + 1) < this.data.numOfPlayers) {
             alert('Not enough players selected');
         } else if((this.data.players.length + 1) > this.data.numOfPlayers) {
@@ -69,10 +72,6 @@ export class GameDetailsPage implements OnInit {
     }
 
     startGame() {
-        console.log("this. questions" + this.data.questions);
-        console.log("count" + this.questionCount);
-        console.log("div player " + this.questionCount/(this.data.players.length + 1));
-
         // @ts-ignore
         if(this.data.questions > (this.questionCount/this.data.players.length)){
             alert('There are not enough questions in that category. Please pick a lesser number of questions');
@@ -104,6 +103,15 @@ export class GameDetailsPage implements OnInit {
             this.gameService.getCategoryAnswerCount( this.data.categoryID ).subscribe(data => {
                 this.questionCount = data['category_question_count']['total_' + this.data.difficulty + '_question_count'];
             });
+        }
+    }
+
+    onePlayer() {
+        if(Number(this.data.numOfPlayers) == 1){
+            this.correctAmount = true;
+        }
+        else {
+            this.showPlayerSelect = true;
         }
     }
 }
