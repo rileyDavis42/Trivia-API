@@ -35,6 +35,7 @@ export class TriviaPagePage implements OnInit {
     askedQuestions: Array<boolean>;
     temp: number = 0;
     score: number = 0;
+    round: number = 1;
 
     questionAnim = 'default';
     winner: any;
@@ -135,8 +136,10 @@ export class TriviaPagePage implements OnInit {
 
         this.askQuestion();
         this.getAnswers();
+        this.getRound();
         this.getActivePlayer();
         this.winners = this.getWinner();
+
     }
 
     // Goes to the stats page upon finishing the game...
@@ -172,5 +175,9 @@ export class TriviaPagePage implements OnInit {
             }
         }
         return winners;
+    }
+    getRound(){
+        this.round = Math.ceil((this.count/this.players.length) + 0.1);
+        console.log('round' + this.round)
     }
 }

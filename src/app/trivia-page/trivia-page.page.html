@@ -23,7 +23,7 @@
     <ion-card class="numQuestions">
         <!--<ion-card id="content" class="{{ questionAnim }} sc-ion-card-md-h sc-ion-card-md-s hydrated">-->
         <ion-card-content *ngIf="!isAnswered && !gameEnded">
-            Question # {{ count + 1 }} of {{ questions.length }}
+            Round {{ this.round }} of {{ questions.length/players.length }}
         </ion-card-content>
     </ion-card>
 
