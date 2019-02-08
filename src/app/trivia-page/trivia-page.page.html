@@ -1,7 +1,9 @@
 <app-header></app-header>
 
 <ion-content padding class="player{{temp}} hydrated">
+
     <ion-spinner *ngIf="!isLoaded"></ion-spinner>
+    <div *ngIf="isLoaded">
     <ion-card *ngIf="isLoaded" class="info">
         <ion-card-header class="playerHeader">Players</ion-card-header>
         <ion-card-content class="playerContainer">
@@ -66,6 +68,7 @@
                 <ion-button *ngIf="isAnswered && gameEnded" (click)="goToStatsPage(this.user); getWinner();">See Player Results  </ion-button>
             </ion-card-content>
     </ion-card>
+    </div>
     <!--<ion-card *ngIf="players[temp]['id'] !== user['id'] && isLoaded">-->
         <!--<h1>It's {{ players[temp]['name'] }}'s turn!</h1>-->
     <!--</ion-card>-->

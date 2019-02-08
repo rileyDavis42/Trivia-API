@@ -122,7 +122,7 @@ export class TriviaPagePage implements OnInit {
 
     // Rotates to the next question
     startRound() {
-        // this.confetti.clear();
+        this.confetti.clear();
         this.isAnswered = false;
         this.questionAnim = 'default';
         this.answer = null;

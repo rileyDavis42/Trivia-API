@@ -13,11 +13,13 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 $red: #ff0000;
-$orange: #ffa500;
+//$orange: #ffa500;
+$orange: #FF7126;
 $yellow: #ffff00;
 $green: #00da00;
 $blue: #0054ff;
 $purple: #C90090;
+$pink: #FF1A85;
 
 @keyframes bgColor {
   0% { background-color: $red }
