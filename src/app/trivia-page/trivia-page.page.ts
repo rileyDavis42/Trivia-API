@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { GameService } from '../user/game.service';
@@ -36,7 +36,7 @@ export class TriviaPagePage implements OnInit {
     temp: number = 0;
     score: number = 0;
     round: number = 1;
-    confetti: ConfettiGenerator;
+    confetti: any;
 
     questionAnim = 'default';
     winner: any;
@@ -48,27 +48,29 @@ export class TriviaPagePage implements OnInit {
         private userService: UserService,
         private router: Router) {
     }
-
     ngOnInit() {
-        this.data = JSON.parse(this.route.snapshot.paramMap.get('data'));
-        this.questions = this.data.questions;
-        this.user = JSON.parse(sessionStorage.getItem('user'));
-        this.count = this.data.questionIndex;
-        this.players = this.data.players;
-        this.confetti = new ConfettiGenerator({target: 'confetti'});
+        setTimeout(() => {
 
-        for (let i = 0; i < this.players.length; i++) {
-            this.userService.getPlayerData(this.players[i]).subscribe(data => {
-                this.players[i] = data;
-                this.players[i]['score'] = 0;
-            });
+            this.data = JSON.parse(this.route.snapshot.paramMap.get('data'));
+            this.questions = this.data.questions;
+            this.user = JSON.parse(sessionStorage.getItem('user'));
+            this.count = this.data.questionIndex;
+            this.players = this.data.players;
+            this.confetti = new window['ConfettiGenerator']({target: 'confetti'});
 
-        }
+            for (let i = 0; i < this.players.length; i++) {
+                this.userService.getPlayerData(this.players[i]).subscribe(data => {
+                    this.players[i] = data;
+                    this.players[i]['score'] = 0;
+                });
 
-        this.getAnswers();
-        this.askQuestion();
-        this.getActivePlayer();
-        this.isLoaded = true;
+            }
+
+            this.getAnswers();
+            this.askQuestion();
+            this.getActivePlayer();
+            this.isLoaded = true;
+        }, 1000);
     }
 
     goBack() {
@@ -150,7 +152,7 @@ export class TriviaPagePage implements OnInit {
     }
 
     getScore() {
-        this.confetti = new ConfettiGenerator({target: 'confetti'});
+        this.confetti = new window['ConfettiGenerator']({target: 'confetti'});
         this.confetti.render();
         this.players[this.temp]['score']++;
     }
