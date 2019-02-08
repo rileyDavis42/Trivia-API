@@ -6,7 +6,6 @@ import { NavController } from '@ionic/angular';
 import * as _ from 'lodash';
 import { Game } from '../user/game';
 import { UserService } from '../user/user.service';
-import { Questions } from '../model/questions';
 
 @Component({
     selector: 'app-game-details',

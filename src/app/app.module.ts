@@ -12,11 +12,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-import {AngularFireAuthModule} from '@angular/fire/auth';
-import {HttpClientModule} from '@angular/common/http';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { HttpClientModule } from '@angular/common/http';
+import  'confetti-js';
 
 @NgModule({
-    declarations: [AppComponent],
+    declarations: [ AppComponent ],
     entryComponents: [],
     imports: [
         BrowserModule,
@@ -26,16 +27,16 @@ import {HttpClientModule} from '@angular/common/http';
         AngularFireModule,
         AngularFireDatabaseModule,
         AngularFireAuthModule,
-        HttpClientModule
+        HttpClientModule,
     ],
     providers: [
         StatusBar,
         SplashScreen,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
     ],
-    bootstrap: [AppComponent],
+    bootstrap: [ AppComponent ],
     exports: [
-        AppComponent
+        AppComponent,
     ]
 })
 export class AppModule {

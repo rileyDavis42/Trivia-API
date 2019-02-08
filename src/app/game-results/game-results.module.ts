@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { GameResultsPage } from './game-results.page';
 import { SharedModule } from "../shared/shared.module";
+import 'confetti-js';
 
 const routes: Routes = [
     {

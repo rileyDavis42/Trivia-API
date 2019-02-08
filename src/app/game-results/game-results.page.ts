@@ -3,9 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Game } from '../user/game';
 import { GameService } from '../user/game.service';
 import { NavController } from '@ionic/angular';
+import { User } from '../user/user';
+import { UserService } from '../user/user.service';
 import 'confetti-js';
-import {User} from '../user/user';
-import {UserService} from '../user/user.service';
 
 @Component({
     selector: 'app-game-results',
@@ -19,7 +19,7 @@ export class GameResultsPage implements OnInit {
     questions: Object[];
     won: boolean;
     score: number;
-    confetti: ConfettiGenerator;
+    confetti: any;
     winners = [];
     Math = Math;
 
@@ -31,11 +31,10 @@ export class GameResultsPage implements OnInit {
         this.winners = JSON.parse(this.route.snapshot.paramMap.get('winners'));
         this.user = JSON.parse(sessionStorage.getItem('user'));
         this.questions = this.game.questions;
-        this.confetti = new ConfettiGenerator({target: 'confetti'});
+        this.confetti = new window['ConfettiGenerator']({target: 'confetti'});
         this.confetti.clear();
         this.getScore();
     }
-
     getScore() {
         this.score = 0;
         for (let i = 0; i < this.questions.length; i++) {
