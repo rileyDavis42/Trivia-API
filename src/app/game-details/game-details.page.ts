@@ -21,7 +21,7 @@ export class GameDetailsPage implements OnInit {
     data: Game;
     questionCount = 0;
     correctAmount: boolean;
-    private showPlayerSelect: boolean = false;
+    showPlayerSelect: boolean = false;
 
     constructor (
         private route: ActivatedRoute,
@@ -94,7 +94,9 @@ export class GameDetailsPage implements OnInit {
     }
 
     updateCategoryName() {
-        this.data.category = _.find(this.categories, { 'id': Number(this.data.categoryID) })['name'];
+        if (this.categories && this.data.categoryID) {
+            this.data.category = _.find(this.categories, { 'id': Number(this.data.categoryID) })['name'];
+        }
     }
 
     updateQuestionCount() {
@@ -106,11 +108,20 @@ export class GameDetailsPage implements OnInit {
     }
 
     onePlayer() {
-        if(Number(this.data.numOfPlayers) == 1){
+        if (Number(this.data.numOfPlayers) == 1){
             this.correctAmount = true;
         }
-        else {
+        else if (Number(this.data.numOfPlayers) > 1) {
             this.showPlayerSelect = true;
         }
+    }
+
+    ionViewWillEnter() {
+        this.gamer = null;
+        this.gamers = [];
+        this.categories = [];
+        this.correctAmount = null;
+        this.showPlayerSelect = false;
+        this.ngOnInit();
     }
 }
