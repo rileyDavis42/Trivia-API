@@ -49,15 +49,13 @@ export class TriviaPagePage implements OnInit {
         private router: Router) {
     }
     ngOnInit() {
-        setTimeout(() => {
+        // setTimeout(() => {
 
             this.data = JSON.parse(this.route.snapshot.paramMap.get('data'));
             this.questions = this.data.questions;
             this.user = JSON.parse(sessionStorage.getItem('user'));
             this.count = this.data.questionIndex;
             this.players = this.data.players;
-            this.confetti = new window['ConfettiGenerator']({target: 'confetti'});
-
             for (let i = 0; i < this.players.length; i++) {
                 this.userService.getPlayerData(this.players[i]).subscribe(data => {
                     this.players[i] = data;
@@ -65,12 +63,13 @@ export class TriviaPagePage implements OnInit {
                 });
 
             }
-
             this.getAnswers();
             this.askQuestion();
             this.getActivePlayer();
             this.isLoaded = true;
-        }, 1000);
+            this.confetti = new window['ConfettiGenerator']({target: 'confetti'});
+
+        // }, 1000);
     }
 
     goBack() {
@@ -124,6 +123,7 @@ export class TriviaPagePage implements OnInit {
 
     // Rotates to the next question
     startRound() {
+        // this.confetti = new window['ConfettiGenerator']({target: 'confetti'});
         this.confetti.clear();
         this.isAnswered = false;
         this.questionAnim = 'default';
