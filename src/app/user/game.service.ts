@@ -46,11 +46,13 @@ export class GameService {
         const findQuotes3 = RegExp('&rsquo;', 'g');
         const findAnd = RegExp('&amp;', 'g');
         const findE = RegExp('&eacute;', 'g');
+        const findE2 = RegExp('&Eacute;', 'g');
         txt = txt.replace( findQuotes, '\'');
         txt = txt.replace( findQuotes2, '\'');
         txt = txt.replace( findQuotes3, '\'');
         txt = txt.replace( findAnd, '&');
         txt = txt.replace( findE, 'é' );
+        txt = txt.replace( findE2, 'é' );
         return txt;
     }
 }
