@@ -1,8 +1,12 @@
 <app-header *ngIf="signedIn"></app-header>
 
-<ion-content padding>
-    <div id="form">
-        <img id="signin_button" (click)="register()" src="../../assets/btn_google_signin_dark_focus_web@2x.png" alt="">
-        <img id="singin_logo" src="{{ profilePic }}" alt="">
+<ion-content>
+    <div id="content">
+        <h1 id="title">Trivia</h1>
+        <i class="fas fa-question" id="question_mark"></i>
+        <div id="form">
+            <img id="signin_button" (click)="register()" src="../../assets/btn_google_signin_dark_focus_web@2x.png" alt="">
+            <img id="singin_logo" src="{{ profilePic }}" alt="">
+        </div>
     </div>
 </ion-content>
