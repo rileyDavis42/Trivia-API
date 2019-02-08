@@ -5,7 +5,6 @@ import { GameService } from '../user/game.service';
 import { User } from '../user/user';
 import { UserService } from '../user/user.service';
 import { Game } from '../user/game';
-import  * as conf from 'confetti-js';
 
 @Component({
     selector: 'app-trivia-page',
@@ -37,7 +36,7 @@ export class TriviaPagePage implements OnInit {
     temp: number = 0;
     score: number = 0;
     round: number = 1;
-    confetti: conf.ConfettiGenerator;
+    confetti: ConfettiGenerator;
 
     questionAnim = 'default';
     winner: any;
@@ -56,7 +55,7 @@ export class TriviaPagePage implements OnInit {
         this.user = JSON.parse(sessionStorage.getItem('user'));
         this.count = this.data.questionIndex;
         this.players = this.data.players;
-        this.confetti = new conf.ConfettiGenerator({target: 'confetti'});
+        this.confetti = new ConfettiGenerator({target: 'confetti'});
 
         for (let i = 0; i < this.players.length; i++) {
             this.userService.getPlayerData(this.players[i]).subscribe(data => {
@@ -123,7 +122,7 @@ export class TriviaPagePage implements OnInit {
 
     // Rotates to the next question
     startRound() {
-        this.confetti.clear();
+        // this.confetti.clear();
         this.isAnswered = false;
         this.questionAnim = 'default';
         this.answer = null;
@@ -151,7 +150,7 @@ export class TriviaPagePage implements OnInit {
     }
 
     getScore() {
-        this.confetti = new conf.ConfettiGenerator({target: 'confetti'});
+        this.confetti = new ConfettiGenerator({target: 'confetti'});
         this.confetti.render();
         this.players[this.temp]['score']++;
     }
