@@ -5,7 +5,6 @@ import { GameService } from '../user/game.service';
 import { User } from '../user/user';
 import { UserService } from '../user/user.service';
 import { Game } from '../user/game';
-import 'confetti-js';
 
 @Component({
     selector: 'app-trivia-page',
@@ -125,7 +124,7 @@ export class TriviaPagePage implements OnInit {
 
     // Rotates to the next question
     startRound() {
-        this.confetti.clear();
+        // this.confetti.clear();
         this.isAnswered = false;
         this.questionAnim = 'default';
         this.answer = null;
