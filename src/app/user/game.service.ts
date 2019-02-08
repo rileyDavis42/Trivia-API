@@ -47,12 +47,18 @@ export class GameService {
         const findAnd = RegExp('&amp;', 'g');
         const findE = RegExp('&eacute;', 'g');
         const findE2 = RegExp('&Eacute;', 'g');
+        const findN = RegExp('&ntilde;', 'g');
+        const findA = RegExp('&aacute;', 'g');
+        const findO = RegExp('&ograve;', 'g');
         txt = txt.replace( findQuotes, '\'');
         txt = txt.replace( findQuotes2, '\'');
         txt = txt.replace( findQuotes3, '\'');
         txt = txt.replace( findAnd, '&');
         txt = txt.replace( findE, 'é' );
         txt = txt.replace( findE2, 'é' );
+        txt = txt.replace( findN, 'ñ' );
+        txt = txt.replace( findA, 'á' );
+        txt = txt.replace( findO, 'ò' );
         return txt;
     }
 }

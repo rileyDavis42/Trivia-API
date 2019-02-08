@@ -26,23 +26,26 @@
     text-align: center;
     color: #fff;
     margin: 0;
-    padding-top: 30%;
+    padding-top: 20%;
     font-size: 50px;
   }
 
-  #question_mark {
-    display: block;
+  #question_mark_container {
     width: 100%;
-    color: $purple;
-    margin: 50px 50px 50px 0;
-    -webkit-text-stroke-color: #fff;
-    -webkit-text-stroke-width: 1px;
-    font-size: 100px;
     text-align: center;
-    animation-name: spin;
-    animation-iteration-count: infinite;
-    animation-duration: 2s;
-    animation-timing-function: linear;
+    margin: 50px 0 50px 0;
+
+    #question_mark {
+      color: $purple;
+      -webkit-text-stroke-color: #fff;
+      -webkit-text-stroke-width: 1px;
+      font-size: 100px;
+      animation-name: spin;
+      animation-iteration-count: infinite;
+      animation-duration: 2s;
+      animation-timing-function: linear;
+    }
   }
+
 
 }
