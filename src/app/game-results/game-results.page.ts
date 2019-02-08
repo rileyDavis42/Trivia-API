@@ -48,16 +48,14 @@ export class GameResultsPage implements OnInit {
         // Score for playing alone...
         if (this.game.players.length === 1) {
             let percentage = (this.score / this.questions.length);
-            // this.won = percentage >= 0.5;
-            this.won = true;
+            this.won = percentage >= 0.5;
+            // this.won = true;
         }
         // Score for multiple players
         else {
             this.won = true;
         }
-        console.log("confetti");
-        this.confetti.render();
-        // if (this.won) { this.confetti.render(); }
+        if (this.won) { this.confetti.render(); }
     }
 
     playAgain() {
