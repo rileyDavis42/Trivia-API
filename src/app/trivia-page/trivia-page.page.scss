@@ -51,18 +51,25 @@ ion-content {
 }
 
 .player0 {
-  --background: #FFA500;
+  --background: #FF7126;
+  //--background: #FFA500;
   color: $orange;
 }
 
+//.player1 {
+//  --background: #0054FF;
+//  color: $blue;
+//}
 .player1 {
-  --background: #0054FF;
-  color: $blue;
+  --background: #4597DB;
+  color: #4597DB;
 }
 
 .player2 {
-  --background: #C90090;
-  color: $purple;
+  //--background: #C90090;
+  //color: $purple;
+  --background: #FF1A85;
+  color: $pink;
 }
 
 .info {

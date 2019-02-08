@@ -1,13 +1,18 @@
 #menu {
+  //ion-content {
+  //  --background: #2C3E50;
+  //}
   ion-content {
-    --background: #2C3E50;
+    --background: #9714FF;
   }
   ion-title {
     font-family: 'Shrikhand', sans-serif;
     color: #C90090;
   }
   ion-list {
-    background-color: #2C3E50;
+    background-color: #9714FF;
+    //background-color: #2C3E50;
+
   }
   ion-item {
     --background: #ECF0F1;
