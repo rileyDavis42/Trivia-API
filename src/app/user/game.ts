@@ -1,7 +1,7 @@
-import {User} from './user';
+import { User } from './user';
 
 export interface Game {
-    won: string;
+    won: User[];
     category: string;
     categoryID: string;
     difficulty: string;
