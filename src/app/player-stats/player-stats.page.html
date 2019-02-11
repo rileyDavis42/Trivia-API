@@ -6,8 +6,8 @@
 
 <ion-content *ngIf="isLoaded">
     <div id="content">
-        <mat-card id="myHeader">
-            <mat-card-header>Player Stats for {{ this.user.name }}</mat-card-header>
+        <mat-card>
+            <div id="myHeader">Player Stats for {{ this.user.name }}</div>
         </mat-card>
         <mat-card id="gamesCard">
             <p>Games played: {{ my_games.length }}</p>
