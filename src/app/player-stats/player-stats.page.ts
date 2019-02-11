@@ -45,26 +45,21 @@ export class PlayerStatsPage implements OnInit {
             // Keys holds the references to each game through their ID
             const keys = Object.keys(games);
             // Iterates through each of the games using the keys array
-            for (let i = 0; i < keys.length; i++) {
+            for ( let i = 0; i < keys.length; i++ ) {
 
                 const game: Game = games[keys[i]];
                 const players = game['players'];
                 // This for loop will go through each of the players in the game to see if the logged in user exists in the game and
                 // whether it was won or lost.
-                for (let j = 0; j < players.length; j++) {
+                for ( let j = 0; j < players.length; j++ ) {
                     if (players[j] === this.user.id) {
-                        this.my_games.push(game);
-                        if ( game.won[j].id === this.user.id ) {
-                            this.won_games.push(game);
-                        } else if ( typeof(game.won) !== 'undefined' && game.won[j].id !== this.user.id ) {
-                            this.lost_games.push(game);
-                        }
+                        this.didWin(game);
                     }
                 }
 
                 // This if statement will check and see if the categories array has a definition for this games category. If it doesn't, it
                 // will create one with a value of zero
-                if (typeof(this.categories[game['category']]) === 'undefined') {
+                if ( typeof(this.categories[game['category']] ) === 'undefined') {
                     this.categories[game['category']] = 0;
                 }
 
@@ -107,6 +102,19 @@ export class PlayerStatsPage implements OnInit {
 
             this.isLoaded = true;
         });
+    }
+
+    didWin (game: Game) {
+        this.my_games.push(game);
+        if( game.won ) {
+            for( let i = 0; i < game.won.length; i++ ) {
+                if ( game.won[i]['id'] === this.user.id ) {
+                    this.won_games.push(game);
+                    return;
+                }
+            }
+            this.lost_games.push(game);
+        }
     }
 
 }

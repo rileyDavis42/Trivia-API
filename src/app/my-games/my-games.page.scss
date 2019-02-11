@@ -30,28 +30,15 @@
   align-items: center;
   background-color: rgba(255, 255, 255, 0.75);
   margin: 5px;
+  padding: 10px;
   border-radius: 10px;
 
-  .game_status {
-    width: 20%;
-    .game_won, .game_not_won {
-      width: 50px;
-      height: 50px;
-      border: 1px solid black;
-      border-radius: 5px;
-      margin-left: 10px;
-      transform: rotate(45deg);
-    }
-    .game_won {
-      background-color: yellow;
-    }
-  }
-
   .game_details {
-    width: 70%;
+    width: 90%;
     overflow: hidden;
     .game_category {
       font-family: 'Shrikhand', sans-serif;
+      color: $purple;
     }
   }
 
