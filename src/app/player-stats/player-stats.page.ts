@@ -93,12 +93,17 @@ export class PlayerStatsPage implements OnInit {
 
             // Calculates the worst category...
             let minIndex = 0;
+
             for ( let i = 1; i < categories.length; i++) {
                 if ( this.categories[categories[i]] < this.categories[categories[minIndex]] ) {
                     minIndex = i;
                 }
             }
             this.worstCategory = categories[minIndex];
+
+            if(this.lost_games.length < 1 ){
+                this.worstCategory = "none"
+            }
 
             this.isLoaded = true;
         });
