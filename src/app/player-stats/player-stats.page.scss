@@ -6,14 +6,27 @@
 }
 
 mat-card {
-  margin-bottom: 20px;
+  //margin-top: 20px;
+  //margin-bottom: 20px;
+  width: 80%;
+  margin: 20px auto;
 }
 
 #content {
   width: 100%;
   height: 100%;
+  padding-top: 30px;
 
   animation-name: bgColor;
   animation-duration: 20s;
   animation-iteration-count: infinite;
+  font-family: 'Acme', sans-serif;
 }
+#myHeader{
+  width: 80%;
+  font-family: 'Acme', sans-serif;
+  font-size: 20px;
+  text-align: center;
+  margin: auto;
+}
+

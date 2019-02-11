@@ -24,8 +24,8 @@
 
     <ion-card *ngIf="isLoaded" class="numQuestions">
         <!--<ion-card id="content" class="{{ questionAnim }} sc-ion-card-md-h sc-ion-card-md-s hydrated">-->
-        <ion-card-content *ngIf="!isAnswered && !gameEnded">
-            Round {{ this.round }} of {{ questions.length/players.length }}
+        <ion-card-content class="roundInfo" *ngIf="!isAnswered && !gameEnded">
+            <div>{{ data.category }} - {{ data.difficulty }}</div> <div>Round {{ this.round }} of {{ questions.length/players.length }}</div>
         </ion-card-content>
     </ion-card>
 
@@ -36,7 +36,7 @@
         <!--I had to uncomment this to see questions and add above lie back in-->
     <!--<ion-card *ngIf="players[temp]['id'] === user['id'] && isLoaded " id="content" class="{{ questionAnim }} sc-ion-card-md-h sc-ion-card-md-s hydrated">-->
         <ion-card-header>
-            <h4>{{ data.category }} - {{ data.difficulty }}</h4>
+            <!--<h4>{{ data.category }} - {{ data.difficulty }}</h4>-->
         </ion-card-header>
             <ion-card-content>
                 <ion-list>
