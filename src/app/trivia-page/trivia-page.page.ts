@@ -133,8 +133,6 @@ export class TriviaPagePage implements OnInit {
         this.getAnswers();
         this.getRound();
         this.getActivePlayer();
-        this.winners = this.getWinner();
-
     }
 
     // Goes to the stats page upon finishing the game...
@@ -155,6 +153,7 @@ export class TriviaPagePage implements OnInit {
         this.confetti = new window['ConfettiGenerator']({target: 'confetti'});
         this.confetti.render();
         this.players[this.temp]['score']++;
+        this.winners = this.getWinner();
     }
 
     getWinner() {
@@ -167,14 +166,13 @@ export class TriviaPagePage implements OnInit {
                 winners = [];
                 winners.push(this.players[maxIndex]);
             } else if (this.players[i]['score'] === this.players[maxIndex]['score']) {
-            // } else if (this.players[i]['score'] === this.players[maxIndex]['score'] && (this.players[i]['score'] != 0)) {
                 winners.push(this.players[i]);
             }
         }
+
         return winners;
     }
     getRound(){
         this.round = Math.ceil((this.count/this.players.length) + 0.1);
-        console.log('round' + this.round)
     }
 }
