@@ -69,4 +69,8 @@ export class GameService {
         txt = txt.replace( findOacute, 'ó' );
         return txt;
     }
+    saveWinner(gameID: string, winners: Array<string>){
+        this.db.object('/Game/' + gameID)
+            .update({won: winners})
+    }
 }

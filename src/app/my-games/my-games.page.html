@@ -6,16 +6,10 @@
         <ng-container *ngIf="isLoaded">
             <div *ngIf="my_games.length < 1" class="no_results">You currently don't have any games going on...go test your knowledge!</div>
             <div class="game" *ngFor="let game of my_games">
-                <div class="game_status">
-                    <div class="game_won" *ngIf=" game.won "></div>
-                    <div class="game_not_won" *ngIf=" !game.won "></div>
-                </div>
                 <div class="game_details">
                     <h4 class="game_category">{{ game.category }}</h4>
                     <p>Difficulty: {{ game.difficulty }} </p>
-                    <div>Players:
-                        <p *ngFor="let player of game['playerNames']">{{ player }}</p>
-                    </div>
+                    <div>Players: {{game.players.length}}</div>
                     <p>Question: {{ game.questionIndex + 1 }} of {{ game.questions.length }}</p>
                 </div>
 
