@@ -21,7 +21,7 @@
   border-radius: 10px;
 
   font-size: 20px;
-  font-family: sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .game {
@@ -36,9 +36,11 @@
   .game_details {
     width: 90%;
     overflow: hidden;
+    font-family: 'Acme', sans-serif;
     .game_category {
       font-family: 'Shrikhand', sans-serif;
       color: $purple;
+      text-decoration: underline;
     }
   }
 
