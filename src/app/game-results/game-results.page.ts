@@ -29,6 +29,8 @@ export class GameResultsPage implements OnInit {
     ngOnInit() {
         this.game = JSON.parse(this.route.snapshot.paramMap.get('game'));
         this.winners = JSON.parse(this.route.snapshot.paramMap.get('winners'));
+        this.gameService.saveWinner(this.game.gameID, this.winners);
+        console.log("game " + this.game.gameID);
         this.user = JSON.parse(sessionStorage.getItem('user'));
         this.questions = this.game.questions;
         this.confetti = new window['ConfettiGenerator']({target: 'confetti'});
@@ -49,7 +51,6 @@ export class GameResultsPage implements OnInit {
         if (this.game.players.length === 1) {
             let percentage = (this.score / this.questions.length);
             this.won = percentage >= 0.5;
-            // this.won = true;
         }
         // Score for multiple players
         else {

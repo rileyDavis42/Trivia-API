@@ -54,9 +54,9 @@ export class PlayerStatsPage implements OnInit {
                 for (let j = 0; j < players.length; j++) {
                     if (players[j] === this.user.id) {
                         this.my_games.push(game);
-                        if ( game.won === this.user.id ) {
+                        if ( game.won[j].id === this.user.id ) {
                             this.won_games.push(game);
-                        } else if ( typeof(game.won) !== 'undefined' && game.won !== this.user.id ) {
+                        } else if ( typeof(game.won) !== 'undefined' && game.won[j].id !== this.user.id ) {
                             this.lost_games.push(game);
                         }
                     }

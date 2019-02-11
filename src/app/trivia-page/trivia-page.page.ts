@@ -167,14 +167,13 @@ export class TriviaPagePage implements OnInit {
                 winners = [];
                 winners.push(this.players[maxIndex]);
             } else if (this.players[i]['score'] === this.players[maxIndex]['score']) {
-            // } else if (this.players[i]['score'] === this.players[maxIndex]['score'] && (this.players[i]['score'] != 0)) {
                 winners.push(this.players[i]);
             }
         }
+
         return winners;
     }
     getRound(){
         this.round = Math.ceil((this.count/this.players.length) + 0.1);
-        console.log('round' + this.round)
     }
 }
