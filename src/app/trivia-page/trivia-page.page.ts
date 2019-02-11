@@ -159,6 +159,20 @@ export class TriviaPagePage implements OnInit {
     getWinner() {
         let winners: Object[] = [];
         let maxIndex = 0;
+
+        if(this.players.length < 2) {
+            console.log("Only one player");
+            let percent = this.players[0]['score']/this.questions.length;
+            if(percent >= 0.5){
+                console.log("one winner");
+                winners.push(this.players[0]);
+            }
+            else{
+                console.log("loser");
+                winners = ["nobody"];
+            }
+            return winners;
+        }
         winners.push(this.players[maxIndex]);
         for (let i = 1; i < this.players.length; i++) {
             if (this.players[i]['score'] > this.players[maxIndex]['score']) {
@@ -168,8 +182,10 @@ export class TriviaPagePage implements OnInit {
             } else if (this.players[i]['score'] === this.players[maxIndex]['score']) {
                 winners.push(this.players[i]);
             }
+            if(winners[0]['score'] === 0){
+                winners = ["nobody"];
+            }
         }
-
         return winners;
     }
     getRound(){
