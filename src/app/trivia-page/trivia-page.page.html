@@ -61,7 +61,7 @@
                     </ion-card>
                     <ion-card class="answerWrong" *ngIf="isAnswered && !right">
                         <div class="result">Incorrect!</div>
-                        <div>The correct answer is....{{correctAnswer}}</div>
+                        <div>The correct answer is....{{ strParse(correctAnswer) }}</div>
                     </ion-card>
 
                     <ion-button *ngIf="isAnswered && !gameEnded" (click)="startRound();getWinner(); answerValue.value = ''">Next Question</ion-button>

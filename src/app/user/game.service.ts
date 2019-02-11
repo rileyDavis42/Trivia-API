@@ -50,6 +50,10 @@ export class GameService {
         const findN = RegExp('&ntilde;', 'g');
         const findA = RegExp('&aacute;', 'g');
         const findO = RegExp('&ograve;', 'g');
+        const findDeg = RegExp('&deg;', 'g');
+        const findOcirc = RegExp('&ocirc;', 'g');
+        const findUuml = RegExp('&uuml;', 'g');
+        const findOacute = RegExp('&oacute;', 'g');
         txt = txt.replace( findQuotes, '\'');
         txt = txt.replace( findQuotes2, '\'');
         txt = txt.replace( findQuotes3, '\'');
@@ -59,6 +63,10 @@ export class GameService {
         txt = txt.replace( findN, 'ñ' );
         txt = txt.replace( findA, 'á' );
         txt = txt.replace( findO, 'ò' );
+        txt = txt.replace(findDeg, 'º');
+        txt = txt.replace(findOcirc, 'ô');
+        txt = txt.replace(findUuml, 'ü');
+        txt = txt.replace( findOacute, 'ó' );
         return txt;
     }
 }
