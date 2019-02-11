@@ -133,8 +133,6 @@ export class TriviaPagePage implements OnInit {
         this.getAnswers();
         this.getRound();
         this.getActivePlayer();
-        this.winners = this.getWinner();
-
     }
 
     // Goes to the stats page upon finishing the game...
@@ -155,6 +153,7 @@ export class TriviaPagePage implements OnInit {
         this.confetti = new window['ConfettiGenerator']({target: 'confetti'});
         this.confetti.render();
         this.players[this.temp]['score']++;
+        this.winners = this.getWinner();
     }
 
     getWinner() {
