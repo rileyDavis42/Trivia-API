@@ -40,7 +40,7 @@ export class GameDetailsPage implements OnInit {
             numOfPlayers: number;
             questions: any;
             questionIndex = 0;
-            won: string;
+            won: User[];
         };
         this.gamer = JSON.parse(sessionStorage.getItem('gamer'));
         this.user = JSON.parse(sessionStorage.getItem('user'));

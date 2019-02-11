@@ -62,4 +62,8 @@ export class GameResultsPage implements OnInit {
         this.navCtrl.navigate('game-details', { });
     }
 
+    strParse(str: string): string {
+        return this.gameService.strParse(str);
+    }
+
 }
